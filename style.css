@@ -1,0 +1,342 @@
+/* style.css
+ *
+ * All visual styling for the quiz: colours (as CSS variables so the
+ * colour-scheme cycle can swap them), layout, buttons, screens, animations.
+ * No JavaScript logic and no vocabulary data lives here — just appearance.
+ * Change spacing, fonts, button shapes, add new classes for new buttons,
+ * etc, freely.
+ */
+
+  :root {
+    --ink: #3a3a3a;
+    --paper: #f2f1ee;
+    --muted: #9a9a95;
+    --accent: #6e6e6e;
+    --line: #3a3a3a;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .frame {
+    width: 100%;
+    max-width: 640px;
+    border: 3px solid var(--ink);
+    padding: 40px 32px;
+    position: relative;
+  }
+  .scheme-btn, .nav-btn {
+    position: absolute;
+    top: 16px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    background: var(--paper);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.2s linear, background 0.2s linear;
+  }
+  .scheme-btn { right: 16px; }
+  .scheme-btn.inline { position: static; }
+  .scheme-btn.corner-left { left: 16px; right: auto; }
+  .scheme-btn:hover {
+    transform: scale(1.14) rotate(10deg);
+    box-shadow: 0 0 0 4px var(--accent);
+  }
+  .scheme-btn:active { transform: scale(0.92) rotate(0deg); }
+  .scheme-btn svg { display: block; }
+  .scheme-btn .swatch { transition: fill 0.2s linear; }
+
+  .nav-btn:hover {
+    transform: scale(1.14) rotate(-10deg);
+    box-shadow: 0 0 0 4px var(--accent);
+  }
+  .nav-btn:active { transform: scale(0.92) rotate(0deg); }
+  .nav-btn svg { display: block; }
+  #game-home-btn { left: 60px; }
+  #game-back-btn { left: 104px; }
+
+  .toolbar-right {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+  }
+  .toolbar-btn {
+    padding: 8px 12px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.15s linear, color 0.15s linear, transform 0.15s ease, border-color 0.2s linear;
+  }
+  .toolbar-btn:hover { background: var(--ink); color: var(--paper); transform: scale(1.05); }
+  .toolbar-btn:active { transform: scale(0.95); }
+  .toolbar-btn.active { background: var(--ink); color: var(--paper); }
+  .toolbar-btn svg { display: block; }
+
+  .kicker {
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    margin: 0 0 6px 0;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 28px 0;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+  }
+  p { line-height: 1.5; }
+
+  .btn {
+    display: block;
+    width: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    padding: 16px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 12px;
+    transition: background 0.08s linear, color 0.08s linear;
+  }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn:active { transform: translateY(1px); }
+  .btn.solid {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn.solid:hover { background: var(--paper); color: var(--ink); }
+  .btn.small {
+    display: inline-block;
+    width: auto;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
+
+  .rule { border: none; border-top: 1px solid var(--ink); margin: 24px 0; }
+
+  /* --- Menu list --- */
+  .menu-item {
+    border: 2px solid var(--ink);
+    padding: 18px;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  .menu-item:hover { background: var(--ink); color: var(--paper); }
+  .menu-item .count { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .menu-item:hover .count { color: var(--muted); }
+
+  /* --- Scrollable list area (list grows independently, Back button stays put) --- */
+  .menu-list-scroll {
+    max-height: 460px;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+  }
+  .menu-list-scroll::-webkit-scrollbar { width: 6px; }
+  .menu-list-scroll::-webkit-scrollbar-track { background: transparent; }
+  .menu-list-scroll::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 3px; }
+  .menu-list-scroll .menu-item:last-child { margin-bottom: 4px; }
+
+  /* --- Game screen --- */
+  #screen-game { padding-top: 22px; }
+  .status-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    font-variant-numeric: tabular-nums;
+  }
+  .progress-track {
+    height: 4px;
+    background: color-mix(in srgb, var(--muted) 35%, var(--paper));
+    margin-bottom: 28px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--ink);
+    transition: width 0.15s linear;
+  }
+  .question-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 8px 0;
+  }
+  .question-text {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 28px 0;
+    line-height: 1.25;
+  }
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .option {
+    aspect-ratio: 2.1 / 1;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 19.55px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    transition: background 0.06s linear, color 0.06s linear, border-color 0.06s linear;
+  }
+  .option:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+  .option:disabled { cursor: default; }
+  .option.correct-flash {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .option.wrong-flash {
+    background: var(--paper);
+    color: var(--ink);
+    border-style: dashed;
+    border-color: var(--accent);
+  }
+  .option.reveal-correct {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  /* --- Blackout (recall) mode: text matches the box colour until hovered,
+     at which point the normal .option:hover rule (higher specificity)
+     takes over and reveals it exactly like a normal hover. --- */
+  .option.blacked {
+    color: var(--paper);
+  }
+  /* While hover-locked (briefly, right after a new question renders), this
+     overrides .option:hover:not(:disabled) — it's more specific (3 classes
+     + :hover vs. 2 classes + :not + :hover) — so a stray hover from the
+     mouse resting over a freshly-drawn option can't reveal it early. */
+  .option.blacked.hover-locked:hover {
+    background: var(--paper);
+    color: var(--paper);
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  .shake { animation: shake 0.28s linear; }
+
+  /* --- End screen --- */
+  .grade-block {
+    text-align: center;
+    padding: 28px 0 8px 0;
+  }
+  .grade-letter {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .score-line {
+    font-size: 16px;
+    margin-top: 10px;
+    color: var(--muted);
+  }
+  .tally-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin: 22px 0 8px 0;
+    font-size: 15px;
+  }
+  .tally-row b { font-size: 20px; display: block; }
+
+  .end-top-actions {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+  }
+  .end-top-actions .btn {
+    margin: 0;
+  }
+  .end-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .end-actions .btn {
+    flex: 1;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+
+  .review-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid var(--ink);
+    margin: 18px 0;
+  }
+  .review-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 1px solid color-mix(in srgb, var(--muted) 45%, var(--paper));
+    font-size: 14px;
+  }
+  .review-row:last-child { border-bottom: none; }
+  .review-row .it { font-weight: 700; }
+  .review-row .en { color: var(--muted); }
+
+  .hidden { display: none !important; }
+
+  .footer-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 26px;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .frame { padding: 28px 18px; }
+    .question-text { font-size: 22px; }
+    .option { font-size: 17.25px; }
+    .grade-letter { font-size: 56px; }
+  }

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verbs and Vocabulary Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="frame">
+
+  <!-- START SCREEN -->
+  <div id="screen-start">
+    <button type="button" class="scheme-btn" id="scheme-btn-start" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <p class="kicker">ITALIAN VOCAB TRAINER</p>
+    <h1>Verbs and Vocabulary Quiz</h1>
+    <p>Practice your Italian by answering multiple-choice questions</p>
+    <hr class="rule">
+    <button class="btn solid" id="btn-goto-menu">Start</button>
+  </div>
+
+  <!-- TYPE SELECTION -->
+  <div id="screen-type" class="hidden">
+    <button type="button" class="scheme-btn" id="scheme-btn-type" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <p class="kicker">WHAT DO YOU WANT TO PRACTISE?</p>
+    <h1>Choose a type</h1>
+    <div class="menu-item" id="type-item-verbs">
+      <div>Verbs</div>
+    </div>
+    <div class="menu-item" id="type-item-vocab">
+      <div>Vocabulary</div>
+    </div>
+    <hr class="rule">
+    <button class="btn" id="btn-back-start-from-type">Back</button>
+  </div>
+
+  <!-- CATEGORY MENU (VERBS) -->
+  <div id="screen-menu" class="hidden">
+    <div class="toolbar-right">
+      <button type="button" class="scheme-btn inline" id="scheme-btn-menu" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+        </svg>
+      </button>
+      <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
+      <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
+    </div>
+    <p class="kicker">VERBS</p>
+    <h1>Select a list</h1>
+    <div class="menu-list-scroll" id="menu-list-verbs">
+      <div class="menu-item" id="menu-item-are">
+        <div>Regular -are verbs</div>
+        <div class="count">212 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-ere">
+        <div>Regular -ere verbs</div>
+        <div class="count">29 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-ere-irregular">
+        <div>Irregular -ere verbs</div>
+        <div class="count">40 questions</div>
+      </div>
+    </div>
+    <hr class="rule">
+    <button class="btn" id="btn-back-start">Back</button>
+  </div>
+
+  <!-- CATEGORY MENU (VOCABULARY) -->
+  <div id="screen-vocab" class="hidden">
+    <div class="toolbar-right">
+      <button type="button" class="scheme-btn inline" id="scheme-btn-vocab" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+        </svg>
+      </button>
+      <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
+      <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
+    </div>
+    <p class="kicker">CHOOSE A CATEGORY</p>
+    <h1>Select a list</h1>
+    <div class="menu-list-scroll" id="menu-list-vocab">
+      <div class="menu-item" id="menu-item-bathroom-bedroom">
+        <div>Bathroom & Bedroom</div>
+        <div class="count">73 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-garden-outdoors-garage">
+        <div>Garden, Outdoors, Garage</div>
+        <div class="count">175 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-household">
+        <div>Household All</div>
+        <div class="count">429 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-kitchen-dining">
+        <div>Kitchen & Dining</div>
+        <div class="count">101 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-living-room-decor-study-office">
+        <div>Living Room, Home Decor, Study & Office</div>
+        <div class="count">80 questions</div>
+      </div>
+    </div>
+    <hr class="rule">
+    <button class="btn" id="btn-back-start-from-vocab">Back</button>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="screen-game" class="hidden">
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-game" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn" id="game-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn" id="game-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <div class="toolbar-right">
+      <button type="button" class="toolbar-btn blackout-btn" id="blackout-btn" title="Toggle recall mode (hide answers until hovered)" aria-label="Toggle recall mode"></button>
+      <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
+      <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
+    </div>
+    <div class="status-row">
+      <span id="progress-text">Question 1 / 212</span>
+      <span id="score-text">Correct 0 · Wrong 0</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <p class="question-label">Q:</p>
+    <p class="question-text" id="question-text">—</p>
+    <div class="options-grid" id="options-grid"></div>
+    <p class="footer-note" id="game-footer-note">Regular -are verbs · 212 pairs</p>
+  </div>
+
+  <!-- END SCREEN -->
+  <div id="screen-end" class="hidden">
+    <div class="end-top-actions">
+      <button type="button" class="btn small" id="btn-retry-mistakes">Retry mistakes</button>
+      <button type="button" class="btn small" id="btn-restart">Play again</button>
+    </div>
+    <p class="kicker">RESULTS</p>
+    <div class="grade-block">
+      <div class="grade-letter" id="grade-letter">A</div>
+      <div class="score-line" id="score-line">0 / 0 correct — 0%</div>
+    </div>
+    <div class="tally-row">
+      <div><b id="end-correct">0</b>Correct</div>
+      <div><b id="end-wrong">0</b>Incorrect</div>
+    </div>
+    <hr class="rule">
+    <div class="end-actions">
+      <button class="btn small" id="btn-review">Review incorrect answers</button>
+      <button class="btn small" id="btn-export">Export incorrect list (.txt)</button>
+    </div>
+
+    <div id="review-list" class="review-list hidden"></div>
+  </div>
+
+</div>
+
+<!--
+  type="module" tells the browser: treat this script as an ES module, so
+  its "import" statement is allowed to work, and everything inside it stays
+  private to this file unless explicitly exported. This is also exactly why
+  this page must be opened through Live Server (a real local web address)
+  rather than double-clicked — modules refuse to load over a plain
+  file:// path.
+-->
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
