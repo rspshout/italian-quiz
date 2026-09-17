@@ -12,7 +12,7 @@
 // to it as LISTS in this file." The { } curly braces matter — they mean
 // "give me specifically the thing named LISTS", not everything in the file.
 // The './' at the start of the path means "look in this same folder".
-import { LISTS } from './vocab-data.js';
+import { LISTS } from './vocab-data.js?v=2';
 
   // ---------- colour schemes ----------
   const SCHEMES = [
