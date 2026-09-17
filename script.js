@@ -2,7 +2,7 @@
 //
 // All game logic lives here: screens, scoring, colour schemes, the
 // multiple-choice engine, recall mode, etc. This file does NOT contain any
-// vocabulary data itself — it borrows the word lists from vocab-data.js and
+// vocabulary data itself — it borrows the word lists from verbs-data.js and
 // vocab-household.js using "import", and it does not contain any HTML — it
 // only reaches into
 // the page (index.html) by element id, the same way the original single file
@@ -14,10 +14,10 @@
 // they mean "give me specifically the thing with this name", not
 // everything in the file. The './' at the start of each path means "look
 // in this same folder". LISTS (the verb lists) and HOUSEHOLD_LISTS (the
-// Household sub-category lists) now live in separate files — vocab-data.js
-// and vocab-household.js — each with its own "?v=N" cache-busting number,
-// so either can be bumped independently when its content changes.
-import { LISTS } from './vocab-data.js?v=7';
+// Household sub-category lists) live in separate files — verbs-data.js and
+// vocab-household.js — each with its own "?v=N" cache-busting number, so
+// either can be bumped independently when its content changes.
+import { LISTS } from './verbs-data.js?v=1';
 import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
 
   // ---------- colour schemes ----------
