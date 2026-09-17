@@ -12,7 +12,7 @@
 // to it as LISTS in this file." The { } curly braces matter — they mean
 // "give me specifically the thing named LISTS", not everything in the file.
 // The './' at the start of the path means "look in this same folder".
-import { LISTS } from './vocab-data.js?v=2';
+import { LISTS, HOUSEHOLD_LISTS } from './vocab-data.js?v=3';
 
   // ---------- colour schemes ----------
   const SCHEMES = [
@@ -101,15 +101,16 @@ import { LISTS } from './vocab-data.js?v=2';
   }
 
   // ---------- elements ----------
-  const screenStart = document.getElementById('screen-start');
-  const screenType  = document.getElementById('screen-type');
-  const screenMenu  = document.getElementById('screen-menu');
-  const screenVocab = document.getElementById('screen-vocab');
-  const screenGame  = document.getElementById('screen-game');
-  const screenEnd   = document.getElementById('screen-end');
+  const screenStart     = document.getElementById('screen-start');
+  const screenType      = document.getElementById('screen-type');
+  const screenMenu      = document.getElementById('screen-menu');
+  const screenVocab     = document.getElementById('screen-vocab');
+  const screenHousehold = document.getElementById('screen-household');
+  const screenGame      = document.getElementById('screen-game');
+  const screenEnd       = document.getElementById('screen-end');
 
   function showScreen(el) {
-    [screenStart, screenType, screenMenu, screenVocab, screenGame, screenEnd].forEach(s => s.classList.add('hidden'));
+    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenGame, screenEnd].forEach(s => s.classList.add('hidden'));
     el.classList.remove('hidden');
   }
 
@@ -119,15 +120,28 @@ import { LISTS } from './vocab-data.js?v=2';
   document.getElementById('btn-back-start-from-type').addEventListener('click', () => showScreen(screenStart));
   document.getElementById('btn-back-start').addEventListener('click', () => showScreen(screenType));
   document.getElementById('btn-back-start-from-vocab').addEventListener('click', () => showScreen(screenType));
-  document.getElementById('menu-item-are').addEventListener('click', () => startGame('are', screenMenu));
-  document.getElementById('menu-item-ere').addEventListener('click', () => startGame('ere', screenMenu));
-  document.getElementById('menu-item-ere-irregular').addEventListener('click', () => startGame('ereIrregular', screenMenu));
-  document.getElementById('menu-item-household').addEventListener('click', () => startGame('household', screenVocab));
-  document.getElementById('menu-item-bathroom').addEventListener('click', () => startGame('bathroom', screenVocab));
-  document.getElementById('menu-item-bedroom').addEventListener('click', () => startGame('bedroom', screenVocab));
-  document.getElementById('menu-item-garden-outdoors-garage').addEventListener('click', () => startGame('gardenOutdoorsGarage', screenVocab));
-  document.getElementById('menu-item-kitchen-dining').addEventListener('click', () => startGame('kitchenDining', screenVocab));
-  document.getElementById('menu-item-living-room-decor-study-office').addEventListener('click', () => startGame('livingRoomDecorStudyOffice', screenVocab));
+  document.getElementById('menu-item-are').addEventListener('click', () => startGame('are', screenMenu, LISTS));
+  document.getElementById('menu-item-ere').addEventListener('click', () => startGame('ere', screenMenu, LISTS));
+  document.getElementById('menu-item-ere-irregular').addEventListener('click', () => startGame('ereIrregular', screenMenu, LISTS));
+
+  // "Household (La casa)" is a category, not a quiz — it navigates one level
+  // deeper to screen-household rather than calling startGame.
+  document.getElementById('menu-item-household-category').addEventListener('click', () => showScreen(screenHousehold));
+  document.getElementById('btn-back-vocab-from-household').addEventListener('click', () => showScreen(screenVocab));
+
+  document.getElementById('menu-item-hh-bathroom').addEventListener('click', () => startGame('bathroom', screenHousehold, HOUSEHOLD_LISTS));
+  document.getElementById('menu-item-hh-bedroom').addEventListener('click', () => startGame('bedroom', screenHousehold, HOUSEHOLD_LISTS));
+  document.getElementById('menu-item-hh-garage-shed').addEventListener('click', () => startGame('garageShed', screenHousehold, HOUSEHOLD_LISTS));
+  document.getElementById('menu-item-hh-garden-outdoors').addEventListener('click', () => startGame('gardenOutdoors', screenHousehold, HOUSEHOLD_LISTS));
+  document.getElementById('menu-item-hh-house-fixtures').addEventListener('click', () => startGame('houseFixtures', screenHousehold, HOUSEHOLD_LISTS));
+  document.getElementById('menu-item-hh-kitchen-dining').addEventListener('click', () => startGame('kitchenDining', screenHousehold, HOUSEHOLD_LISTS));
+  document.getElementById('menu-item-hh-living-room').addEventListener('click', () => startGame('livingRoom', screenHousehold, HOUSEHOLD_LISTS));
+  document.getElementById('menu-item-hh-study').addEventListener('click', () => startGame('study', screenHousehold, HOUSEHOLD_LISTS));
+
+  // "Random (Casuale)" isn't a fixed list — build a fresh 50-word draw from
+  // every household sub-category, re-shuffled each time it's played.
+  document.getElementById('menu-item-hh-random').addEventListener('click', () => startRandomHousehold());
+
   document.getElementById('game-home-btn').addEventListener('click', () => showScreen(screenStart));
   document.getElementById('game-back-btn').addEventListener('click', () => showScreen(gameSourceScreen || screenType));
 
@@ -201,9 +215,23 @@ import { LISTS } from './vocab-data.js?v=2';
     return a;
   }
 
-  function startGame(listKey, sourceScreen) {
-    const list = LISTS[listKey];
+  function startGame(listKey, sourceScreen, registry) {
+    const list = (registry || LISTS)[listKey];
     startGameWithPairs(list.pairs, list.label, list.footer, sourceScreen, list.pairs);
+  }
+
+  // Builds a fresh 50-pair "Random (Casuale)" round by pooling every
+  // household sub-category together and shuffling. Runs again from scratch
+  // each time the tile is clicked, so a new draw appears every play.
+  // masterPool is set to this same 50-pair draw (not the full ~399-pair
+  // pool) so multiple-choice distractors stay consistent with how every
+  // other list already works: drawn from the list actually being played.
+  function startRandomHousehold() {
+    const allHouseholdPairs = Object.values(HOUSEHOLD_LISTS).flatMap(list => list.pairs);
+    const randomPairs = shuffle(allHouseholdPairs).slice(0, 50);
+    const label = 'Random (Casuale)';
+    const footer = label + ' · ' + randomPairs.length + ' pairs';
+    startGameWithPairs(randomPairs, label, footer, screenHousehold, randomPairs);
   }
 
   function startGameWithPairs(pairs, label, footer, sourceScreen, pool) {
