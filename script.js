@@ -12,7 +12,7 @@
 // to it as LISTS in this file." The { } curly braces matter — they mean
 // "give me specifically the thing named LISTS", not everything in the file.
 // The './' at the start of the path means "look in this same folder".
-import { LISTS, HOUSEHOLD_LISTS } from './vocab-data.js?v=3';
+import { LISTS, HOUSEHOLD_LISTS } from './vocab-data.js?v=4';
 
   // ---------- colour schemes ----------
   const SCHEMES = [
@@ -27,6 +27,15 @@ import { LISTS, HOUSEHOLD_LISTS } from './vocab-data.js?v=3';
     { name: 'Sage & Mustard',       ink: '#3f4d3b', paper: '#f3f5ee', muted: '#9aa08e', accent: '#c9a227' },
     { name: 'Lavender Fields',      ink: '#4b3b63', paper: '#f6f2fa', muted: '#b6a9c9', accent: '#8e6bb3' },
     { name: 'Amalfi Coast',         ink: '#1f4e5f', paper: '#fdf6ec', muted: '#9db6bd', accent: '#e0a458' },
+    { name: 'Tuscan Olive',         ink: '#2B3027', paper: '#F4F3EE', muted: '#70756A', accent: '#606C38' },
+    { name: 'Venetian Terracotta',  ink: '#33221C', paper: '#FAF6F0', muted: '#8C736A', accent: '#BC4749' },
+    { name: 'Roman Marble',         ink: '#111111', paper: '#FCFCFC', muted: '#666666', accent: '#9A7B38' },
+    { name: 'Sicilian Lemon',       ink: '#1D2A32', paper: '#FFFDF9', muted: '#6E7C85', accent: '#D4A373' },
+    { name: 'Alpine Pine',          ink: '#1A2824', paper: '#F2F5F4', muted: '#60726C', accent: '#2D6A4F' },
+    { name: 'Espresso Macchiato',   ink: '#2A201B', paper: '#F7F2EC', muted: '#827267', accent: '#A65D37' },
+    { name: 'Adriatic Dusk',        ink: '#F0F4F8', paper: '#1E2229', muted: '#8B9BB4', accent: '#E07A5F' },
+    { name: 'Piedmont Truffle',     ink: '#292522', paper: '#F5F2EC', muted: '#7D756D', accent: '#8C6D53' },
+    { name: 'Florentine Paper',     ink: '#262322', paper: '#FBF8F2', muted: '#807570', accent: '#78290F' },
   ];
   let schemeIndex = 0;
 
