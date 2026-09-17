@@ -354,19 +354,101 @@ import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
     setTimeout(nextQuestion, isCorrect ? 380 : 620);
   }
 
-  function getGrade(pct) {
-    if (pct >= 95) return 'A*';
-    if (pct >= 90) return 'A';
-    if (pct >= 80) return 'B';
-    if (pct >= 70) return 'C';
-    if (pct >= 60) return 'D';
-    if (pct >= 50) return 'E';
-    return 'F';
+  // ---------- grade tiers & motivational comments ----------
+  // Each tier has a display "letter" (shown big in #grade-letter) and a pool
+  // of 5 motivational comments; endGame() picks one at random each time and
+  // shows it in #grade-comment, between the grade and the score line.
+  const GRADE_TIERS = {
+    perfect: {
+      letter: '100%!',
+      comments: [
+        'Assoluta perfezione, you are truly fantastico!',
+        'Every single answer was perfetto - well done!',
+        'Flawless work, hai capito everything completely!',
+        'Incredible job, a perfetto score!',
+        'Outshining everyone with a meravigliosa performance!',
+      ],
+    },
+    aStar: {
+      letter: 'A*',
+      comments: [
+        'Exceptional work, you aced this test, bravissimo!',
+        'Brilliant performance, keep shining bright always!',
+        'Outstanding effort, you hit the highest mark!',
+        'Top-tier mastery, you should be so fiero!',
+        'Phenomenal results, keep up the brilliance!',
+      ],
+    },
+    a: {
+      letter: 'A',
+      comments: [
+        'Fantastico job, your hard work really paid off!',
+        'Superb effort, you are doing wonderfully, benissimo!',
+        'Wonderful results, keep up this great slancio!',
+        'Brilliant understanding shown here, ottimo lavoro!',
+        'Impressive work, you are right at the top!',
+      ],
+    },
+    b: {
+      letter: 'B',
+      comments: [
+        'Very solido performance, keep up the good work!',
+        'Great effort, you are doing davvero well!',
+        'Strong work, you have a fermo grasp of this!',
+        'You are performing consistently well, avanti così!',
+        'Good job, your progress is shining through!',
+      ],
+    },
+    c: {
+      letter: 'C',
+      comments: [
+        'Good steady effort, you are meeting expectations!',
+        'Solido work, keep building on this foundation!',
+        'You are doing bene, keep pushing forward!',
+        'Good progress shown here, continue così!',
+        'A respectable result, keep up the steady work!',
+      ],
+    },
+    d: {
+      letter: 'D',
+      comments: [
+        'You are making progress, prova ancora!',
+        'Keep practicing and you will see miglioramento!',
+        'Good effort, keep working hard each giorno!',
+        'You can do this, just keep practicing!',
+        'Every step forward counts, non mollare!',
+      ],
+    },
+    e: {
+      letter: 'E',
+      comments: [
+        'Keep your chin up, stai improving!',
+        'More practice will help you improve steadily!',
+        "Don't give up, you are moving avanti!",
+        'Keep trying, ogni bit of practice helps!',
+        'Every expert was once a beginner, dai!',
+      ],
+    },
+  };
+
+  // Bands: 100% exact -> perfect; 90-99 -> A*; 80-89 -> A; 70-79 -> B;
+  // 55-69 -> C; 35-54 -> D; 0-34 -> E. No "F" tier any more.
+  function getGradeInfo(pct) {
+    if (pct >= 100) return GRADE_TIERS.perfect;
+    if (pct >= 90) return GRADE_TIERS.aStar;
+    if (pct >= 80) return GRADE_TIERS.a;
+    if (pct >= 70) return GRADE_TIERS.b;
+    if (pct >= 55) return GRADE_TIERS.c;
+    if (pct >= 35) return GRADE_TIERS.d;
+    return GRADE_TIERS.e;
   }
 
   function endGame() {
     const pct = Math.round((correctCount / totalQuestions) * 1000) / 10;
-    document.getElementById('grade-letter').textContent = getGrade(pct);
+    const gradeInfo = getGradeInfo(pct);
+    const comment = gradeInfo.comments[Math.floor(Math.random() * gradeInfo.comments.length)];
+    document.getElementById('grade-letter').textContent = gradeInfo.letter;
+    document.getElementById('grade-comment').textContent = comment;
     document.getElementById('score-line').textContent =
       correctCount + ' / ' + totalQuestions + ' correct — ' + pct + '%';
     document.getElementById('end-correct').textContent = correctCount;
