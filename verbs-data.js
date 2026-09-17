@@ -1,12 +1,15 @@
-// vocab-data.js
+// verbs-data.js
 //
 // This file holds ONLY verb vocabulary data — no game logic, no HTML, no
 // styling. Safe to edit freely: add new words to an existing list, or add
 // a whole new list (see the "HOW TO ADD A NEW LIST" note near the bottom).
 //
-// Broad vocabulary categories (Household, and future ones like Clothes or
-// Animals) live in their own vocab-<name>.js files instead — see
-// vocab-household.js for the first example of that pattern.
+// Named "verbs-data.js" (rather than "vocab-<name>.js") because it's the
+// one exception to the category-file pattern below — verbs aren't a
+// vocabulary category. Broad vocabulary categories (Household, and future
+// ones like Food & Drink or Transport) live in their own vocab-<name>.js
+// files instead — see vocab-household.js for the first example of that
+// pattern.
 //
 // Each list is an array of [Italian, English] pairs.
 
