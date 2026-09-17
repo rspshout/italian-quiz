@@ -2,17 +2,23 @@
 //
 // All game logic lives here: screens, scoring, colour schemes, the
 // multiple-choice engine, recall mode, etc. This file does NOT contain any
-// vocabulary data itself — it borrows the word lists from vocab-data.js
-// using "import", and it does not contain any HTML — it only reaches into
+// vocabulary data itself — it borrows the word lists from vocab-data.js and
+// vocab-household.js using "import", and it does not contain any HTML — it
+// only reaches into
 // the page (index.html) by element id, the same way the original single file
 // did.
 //
-// The line below is the "import" side of the export/import pair. It says:
-// "bring in the LISTS registry that vocab-data.js exported, and let me refer
-// to it as LISTS in this file." The { } curly braces matter — they mean
-// "give me specifically the thing named LISTS", not everything in the file.
-// The './' at the start of the path means "look in this same folder".
-import { LISTS, HOUSEHOLD_LISTS } from './vocab-data.js?v=6';
+// The lines below are the "import" side of the export/import pair. Each
+// says: "bring in the named registry that this file exported, and let me
+// refer to it by that name in this file." The { } curly braces matter —
+// they mean "give me specifically the thing with this name", not
+// everything in the file. The './' at the start of each path means "look
+// in this same folder". LISTS (the verb lists) and HOUSEHOLD_LISTS (the
+// Household sub-category lists) now live in separate files — vocab-data.js
+// and vocab-household.js — each with its own "?v=N" cache-busting number,
+// so either can be bumped independently when its content changes.
+import { LISTS } from './vocab-data.js?v=7';
+import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
 
   // ---------- colour schemes ----------
       const SCHEMES = [
