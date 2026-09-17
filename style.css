@@ -1,763 +1,342 @@
-// vocab-data.js
-//
-// This file holds ONLY vocabulary and verb data — no game logic, no HTML, no styling.
-// Safe to edit freely: add new words to an existing list, or add a whole new list
-// (see the "HOW TO ADD A NEW LIST" note near the bottom).
-//
-// Each list is an array of [Italian, English] pairs.
+/* style.css
+ *
+ * All visual styling for the quiz: colours (as CSS variables so the
+ * colour-scheme cycle can swap them), layout, buttons, screens, animations.
+ * No JavaScript logic and no vocabulary data lives here — just appearance.
+ * Change spacing, fonts, button shapes, add new classes for new buttons,
+ * etc, freely.
+ */
 
-export const VOCAB_ARE = [
-  ["Abbracciare", "To hug"],
-  ["Abitare", "To live"],
-  ["Accettare", "To accept"],
-  ["Affittare", "To rent"],
-  ["Affrontare", "To face"],
-  ["Aiutare", "To help"],
-  ["Amare", "To love"],
-  ["Ammirare", "To Admire"],
-  ["Appoggiare", "To support"],
-  ["Apprezzare", "To appreciate"],
-  ["Arrivare", "To arrive"],
-  ["Ascoltare", "To listen"],
-  ["Aspettare", "To wait"],
-  ["Attraversare", "To cross"],
-  ["Augurare", "To wish"],
-  ["Avanzare", "To advance"],
-  ["Avvicinare", "To bring closer"],
-  ["Baciare", "To kiss"],
-  ["Ballare", "To dance"],
-  ["Bastare", "To be enough"],
-  ["Bloccare", "To block"],
-  ["Brillare", "To sparkle"],
-  ["Brontolare", "To grumble"],
-  ["Bruciare", "To burn"],
-  ["Calcolare", "To calculate"],
-  ["Calmare", "To calm"],
-  ["Cambiare", "To change"],
-  ["Camminare", "To walk"],
-  ["Cantare", "To sing"],
-  ["Capitare", "To happen"],
-  ["Catturare", "To capture"],
-  ["Cenare", "To have dinner"],
-  ["Cercare", "To look for"],
-  ["Chiamare", "To call"],
-  ["Colorare", "To colour"],
-  ["Combinare", "To combine"],
-  ["Cominciare", "To begin"],
-  ["Comprare", "To buy"],
-  ["Concentrare", "To concentrate"],
-  ["Confermare", "To confirm"],
-  ["Consegnare", "To deliver"],
-  ["Consigliare", "To advise"],
-  ["Constrastare", "To tackle"],
-  ["Contare", "To count"],
-  ["Controllare", "To check"],
-  ["Cooperare", "To cooperate"],
-  ["Costare", "To cost"],
-  ["Cucinare", "To cook"],
-  ["Curare", "To take care of"],
-  ["Creare", "To create"],
-  ["Criticare", "To criticise"],
-  ["Danzare", "To dance"],
-  ["Dedicare", "To dedicate"],
-  ["Desiderare", "To desire"],
-  ["Dimenticare", "To forget"],
-  ["Dimostrare", "To demonstrate"],
-  ["Disegnare", "To draw"],
-  ["Disturbare", "To disturb"],
-  ["Diventare", "To become"],
-  ["Divorziare", "To divorce"],
-  ["Domandare", "To ask"],
-  ["Dubitare", "To doubt"],
-  ["Durare", "To take / To last"],
-  ["Educare", "To educate"],
-  ["Eliminare", "To eliminate"],
-  ["Entrare", "To enter"],
-  ["Entusiasmare", "To excite"],
-  ["Evitare", "To avoid"],
-  ["Firmare", "To sign"],
-  ["Fissare", "To fix / To stare"],
-  ["Formare", "To form"],
-  ["Fotografare", "To photograph"],
-  ["Frequentare", "To frequent"],
-  ["Fumare", "To smoke"],
-  ["Giocare", "To play"],
-  ["Girare", "To turn"],
-  ["Guadagnare", "To earn"],
-  ["Guardare", "To look"],
-  ["Guidare", "To drive"],
-  ["Immaginare", "To imagine"],
-  ["Imparare", "To learn"],
-  ["Incontrare", "To meet"],
-  ["Incoraggiare", "To encourage"],
-  ["Indossare", "To wear"],
-  ["Indovinare", "To guess"],
-  ["Iniziare", "To start"],
-  ["Influenzare", "To influence"],
-  ["Insegnare", "To teach"],
-  ["Interessare", "To interest"],
-  ["Inventare", "To invent"],
-  ["Invitare", "To invite"],
-  ["Irritare", "To irritate"],
-  ["Lasciare", "To leave"],
-  ["Lanciare", "To throw"],
-  ["Lavare", "To wash"],
-  ["Levare", "To remove"],
-  ["Lavorare", "To work"],
-  ["Liberare", "To free"],
-  ["Limitare", "To limit"],
-  ["Litigare", "To argue"],
-  ["Lottare", "To struggle"],
-  ["Mandare", "To send"],
-  ["Mangiare", "To eat"],
-  ["Manifestare", "To manifest"],
-  ["Mescolare", "To mix"],
-  ["Migliorare", "To improve"],
-  ["Moltiplicare", "To multiply"],
-  ["Navigare", "To navigate"],
-  ["Nominare", "To appoint"],
-  ["Noleggiare", "To rent a car"],
-  ["Notare", "To notice"],
-  ["Nuotare", "To swim"],
-  ["Occupare", "To occupy"],
-  ["Odiare", "To hate"],
-  ["Oliare", "To oil"],
-  ["Organizzare", "To organise"],
-  ["Osservare", "To observe"],
-  ["Ostacolare", "To obstruct"],
-  ["Ottimizzare", "To optimise"],
-  ["Pagare", "To pay"],
-  ["Paragonare", "To compare"],
-  ["Parcheggiare", "To park"],
-  ["Pareggiare", "To draw a game"],
-  ["Parlare", "To speak"],
-  ["Partecipare", "To participate"],
-  ["Passare", "To pass"],
-  ["Pensare", "To think"],
-  ["Perdonare", "To forgive"],
-  ["Perfezionare", "To perfect"],
-  ["Pianificare", "To plan"],
-  ["Portare", "To carry"],
-  ["Pranzare", "To have lunch"],
-  ["Precipitare", "To plummet"],
-  ["Prenotare", "To book"],
-  ["Preparare", "To prepare"],
-  ["Presentare", "To present"],
-  ["Procrastinare", "To procrastinate"],
-  ["Progettare", "To design"],
-  ["Pronunciare", "To pronounce"],
-  ["Protestare", "To protest"],
-  ["Provare", "To test"],
-  ["Pubblicare", "To publish"],
-  ["Punteggiare", "To punctuate"],
-  ["Quadrare", "To balance"],
-  ["Raccomandare", "To recommend"],
-  ["Raccontare", "To recount"],
-  ["Realizzare", "To realise"],
-  ["Regalare", "To gift"],
-  ["Regolare", "To regulate"],
-  ["Restare", "To stay"],
-  ["Ricordare", "To remember"],
-  ["Rifiutare", "To refuse"],
-  ["Rigettare", "To reject"],
-  ["Rilassare", "To relax"],
-  ["Ringraziare", "To thank"],
-  ["Ripassare", "To review"],
-  ["Riscaldare", "To heat up"],
-  ["Risparmiare", "To save money"],
-  ["Rispettare", "To respect"],
-  ["Ritirare", "To withdraw / To collect"],
-  ["Ritornare", "To return"],
-  ["Rivelare", "To reveal"],
-  ["Rubare", "To steal"],
-  ["Salutare", "To greet"],
-  ["Saltare", "To jump"],
-  ["Salvare", "To save"],
-  ["Sbagliare", "To make a mistake"],
-  ["Scaricare", "To download"],
-  ["Sciare", "To ski"],
-  ["Scherzare", "To joke"],
-  ["Scomodare", "To inconvenience"],
-  ["Sforzare", "To make an effort"],
-  ["Segnare", "To score a goal"],
-  ["Sgridare", "To scold"],
-  ["Sognare", "To dream"],
-  ["Sopportare", "To endure"],
-  ["Sorpassare", "To overtake"],
-  ["Sperare", "To hope"],
-  ["Spettare", "To await"],
-  ["Spiegare", "To explain"],
-  ["Sponsorizzare", "To sponsor"],
-  ["Sposare/Sposarsi", "To marry"],
-  ["Stampare", "To print"],
-  ["Stimolare", "To stimulate"],
-  ["Stracciare", "To tear"],
-  ["Studiare", "To study"],
-  ["Suonare", "To play (an instrument)"],
-  ["Superare", "To overcome / to pass"],
-  ["Tagliare", "To cut"],
-  ["Telefonare", "To phone"],
-  ["Tentare", "To attempt"],
-  ["Tifare", "To support (a team)"],
-  ["Toccare", "To touch"],
-  ["Tollerare", "To tolerate"],
-  ["Tonificare", "To tone"],
-  ["Tornare", "To return"],
-  ["Trattare", "To treat / To negotiate"],
-  ["Trionfare", "To triumph"],
-  ["Trovare", "To find"],
-  ["Urlare", "To scream"],
-  ["Usare", "To use"],
-  ["Vacillare", "To waver"],
-  ["Valorizzare", "To enhance / To highlight"],
-  ["Variare", "To vary"],
-  ["Verificare", "To verify"],
-  ["Viaggiare", "To travel"],
-  ["Vigilare", "To monitor"],
-  ["Violare", "To violate"],
-  ["Visitare", "To visit"],
-  ["Volare", "To fly"],
-  ["Vomitare", "To vomit"],
-  ["Zoppicare", "To limp"],
-];  // [ [Italian, English], ... ]
+  :root {
+    --ink: #3a3a3a;
+    --paper: #f2f1ee;
+    --muted: #9a9a95;
+    --accent: #6e6e6e;
+    --line: #3a3a3a;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .frame {
+    width: 100%;
+    max-width: 640px;
+    border: 3px solid var(--ink);
+    padding: 40px 32px;
+    position: relative;
+  }
+  .scheme-btn, .nav-btn {
+    position: absolute;
+    top: 16px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    background: var(--paper);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.2s linear, background 0.2s linear;
+  }
+  .scheme-btn { right: 16px; }
+  .scheme-btn.inline { position: static; }
+  .scheme-btn.corner-left { left: 16px; right: auto; }
+  .scheme-btn:hover {
+    transform: scale(1.14) rotate(10deg);
+    box-shadow: 0 0 0 4px var(--accent);
+  }
+  .scheme-btn:active { transform: scale(0.92) rotate(0deg); }
+  .scheme-btn svg { display: block; }
+  .scheme-btn .swatch { transition: fill 0.2s linear; }
 
-export const VOCAB_ERE = [
-  ["Abbattere", "To knock down"],
-  ["Assistere", "To assist"],
-  ["Battere", "To beat"],
-  ["Cedere", "To give away"],
-  ["Combattere", "To fight"],
-  ["Competere", "To compete"],
-  ["Consistere", "To consist"],
-  ["Credere", "To believe"],
-  ["Dibattere", "To debate"],
-  ["Eccedere", "To exceed"],
-  ["Esistere", "To exist"],
-  ["Fremere", "To quiver"],
-  ["Gemere", "To groan"],
-  ["Godere", "To enjoy"],
-  ["Insistere", "To insist"],
-  ["Intercedere", "To intercede"],
-  ["Precedere", "To precede"],
-  ["Premere", "To press"],
-  ["Procedere", "To proceed"],
-  ["Resistere", "To resist"],
-  ["Retrocedere", "To relegate / To retrocede"],
-  ["Ricevere", "To receive"],
-  ["Ripetere", "To repeat"],
-  ["Splendere", "To shine"],
-  ["Spremere", "To squeeze"],
-  ["Sussistere", "To subsist"],
-  ["Temere", "To fear"],
-  ["Tessere", "To weave"],
-  ["Vendere", "To sell"],
-];  // [ [Italian, English], ... ]
+  .nav-btn:hover {
+    transform: scale(1.14) rotate(-10deg);
+    box-shadow: 0 0 0 4px var(--accent);
+  }
+  .nav-btn:active { transform: scale(0.92) rotate(0deg); }
+  .nav-btn svg { display: block; }
+  #game-home-btn { left: 60px; }
+  #game-back-btn { left: 104px; }
 
-export const VOCAB_ERE_IRREGULAR = [
-  ["Avere", "To have"],
-  ["Bere", "To drink"],
-  ["Cogliere", "To pick / To gather"],
-  ["Comporre", "To compose"],
-  ["Condurre", "To lead / To conduct"],
-  ["Conoscere", "To know / To be acquainted with"],
-  ["Contenere", "To contain"],
-  ["Crescere", "To grow"],
-  ["Disporre", "To arrange"],
-  ["Distrarre", "To distract"],
-  ["Dovere", "To have to / Must"],
-  ["Esporre", "To expose"],
-  ["Essere", "To be"],
-  ["Introdurre", "To introduce"],
-  ["Mantenere", "To maintain"],
-  ["Muovere", "To move"],
-  ["Nascere", "To be born"],
-  ["Ottenere", "To obtain"],
-  ["Parere", "To seem / To appear"],
-  ["Piacere", "To like / To please"],
-  ["Porre", "To place / To put"],
-  ["Potere", "To be able to / Can"],
-  ["Produrre", "To produce"],
-  ["Proporre", "To propose"],
-  ["Raccogliere", "To collect / To gather"],
-  ["Ridurre", "To reduce"],
-  ["Rimanere", "To remain / To stay"],
-  ["Sapere", "To know"],
-  ["Scegliere", "To choose"],
-  ["Sedere", "To sit"],
-  ["Sostenere", "To support / To sustain"],
-  ["Spegnere", "To turn off / To extinguish"],
-  ["Supporre", "To suppose"],
-  ["Tacere", "To be silent"],
-  ["Tenere", "To hold / To keep"],
-  ["Togliere", "To remove / To take away"],
-  ["Tradurre", "To translate"],
-  ["Trarre", "To draw / To pull"],
-  ["Valere", "To be worth"],
-  ["Volere", "To want"],
-];  // [ [Italian, English], ... ]
+  .toolbar-right {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+  }
+  .toolbar-btn {
+    padding: 8px 12px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.15s linear, color 0.15s linear, transform 0.15s ease, border-color 0.2s linear;
+  }
+  .toolbar-btn:hover { background: var(--ink); color: var(--paper); transform: scale(1.05); }
+  .toolbar-btn:active { transform: scale(0.95); }
+  .toolbar-btn.active { background: var(--ink); color: var(--paper); }
+  .toolbar-btn svg { display: block; }
 
-export const VOCAB_BATHROOM = [
-  ['Il dopobarba', 'Aftershave'],
-  ['Il balsamo dopobarba', 'Aftershave balm'],
-  ['La salviettina antisettica', 'Antiseptic wipe'],
-  ['La saponetta', 'Bar of soap'],
-  ['La vasca da bagno', 'Bath'],
-  ['Il tappetino da bagno', 'Bath mat'],
-  ['Il giocattolo da bagno', 'Bath toy'],
-  ["L'accappatoio", 'Bathrobe'],
-  ['Il bagno', 'Bathroom'],
-  ['Il bidet', 'Bidet'],
-  ['La spazzola per il corpo', 'Body brush'],
-  ['La lozione per il corpo', 'Body lotion'],
-  ["L'olio per il corpo", 'Body oil'],
-  ['Lo scrub per il corpo', 'Body scrub'],
-  ["L'armadio", 'Cabinet'],
-  ['La salviettina struccante', 'Cleansing wipe'],
-  ["L'acqua di Colonia", 'Cologne'],
-  ['Il pettine', 'Comb'],
-  ['Il balsamo', 'Conditioner'],
-  ['Il filo interdentale', 'Dental floss'],
-  ['Il rasoio usa e getta', 'Disposable razor'],
-  ['Lo strumento per la rimozione del cerume', 'Ear wax removal tool'],
-  ['Il rasoio elettrico', 'Electric razor'],
-  ['Lo spazzolino elettrico', 'Electric toothbrush'],
-  ["L'asciugamano per il viso", 'Face towel'],
-  ["L'asciugamano per gli ospiti", 'Guest towel'],
-  ['La molletta per capelli', 'Hair clip'],
-  ["L'asciugacapelli", 'Hair dryer'],
-  ['La spazzola per capelli', 'Hairbrush'],
-  ['La crema per le mani', 'Hand cream'],
-  ['Il sapone liquido', 'Liquid soap'],
-  ['Lo specchio ingranditore', 'Magnifying mirror'],
-  ["L'armadietto dei medicinali", 'Medicine cabinet'],
-  ['La crema idratante', 'Moisturiser'],
-  ['Il collutorio', 'Mouthwash'],
-  ['Il tagliaunghie', 'Nail clipper'],
-  ['La lima per unghie', 'Nail file'],
-  ['Le forbicine per le unghie', 'Nail scissors'],
-  ['Lo sturalavandini', 'Plunger'],
-  ['La lametta', 'Razor blade'],
-  ['Lo shampoo', 'Shampoo'],
-  ['La crema da barba', 'Shaving cream'],
-  ['Il set da rasatura', 'Shaving kit'],
-  ['La doccia', 'Shower'],
-  ['La cuffia per la doccia', 'Shower cap'],
-  ['La tenda della doccia', 'Shower curtain'],
-  ['Il soffione della doccia', 'Shower head'],
-  ['Il tappetino per la doccia', 'Shower mat'],
-  ['Il sapone', 'Soap'],
-  ['Il dosatore di sapone', 'Soap dispenser'],
-  ['Lo scopino del WC', 'Toilet brush'],
-  ['Il detergente per WC', 'Toilet cleaner'],
-  ['Lo sciacquone', 'Toilet flush'],
-  ['La carta igienica', 'Toilet paper'],
-  ['Il portarotolo', 'Toilet paper holder'],
-  ['Il set di cortesia', 'Toiletries set'],
-  ['Lo spazzolino', 'Toothbrush'],
-  ['Il portaspazzolino', 'Toothbrush holder'],
-  ['Il dentifricio', 'Toothpaste'],
-  ["L'asciugamano", 'Towel'],
-  ['Il lavandino', 'Washbasin'],
-];
+  .kicker {
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    margin: 0 0 6px 0;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 28px 0;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+  }
+  p { line-height: 1.5; }
 
-export const VOCAB_BEDROOM = [
-  ['La sveglia', 'Alarm clock'],
-  ['Il letto', 'Bed'],
-  ['Il lenzuolo', 'Bed sheet'],
-  ['La camera da letto', 'Bedroom'],
-  ['La lampada da comodino', 'Bedside lamp'],
-  ['Il comodino', 'Bedside table'],
-  ['La coperta', 'Blanket'],
-  ['Il cuscino per il corpo', 'Body pillow'],
-  ['I libri', 'Books'],
-  ['Il letto a castello', 'Bunk bed'],
-  ['Il ventilatore da soffitto', 'Ceiling fan'],
-  ['La sedia', 'Chair'],
-  ['Il set di scacchi', 'Chess set'],
-  ['La cassettiera', 'Chest of drawers'],
-  ['I vestiti', 'Clothes'],
-  ["L'attaccapanni", 'Coat rack'],
-  ["L'appendiabiti", 'Coat stand'],
-  ['La culla', 'Cot'],
-  ['La tenda', 'Curtain'],
-  ['La scrivania', 'Desk'],
-  ['Il letto matrimoniale', 'Double bed'],
-  ['Il tavolo da toeletta', 'Dressing table'],
-  ['Il piumino', 'Duvet'],
-  ['La coperta elettrica', 'Electric blanket'],
-  ['Il lenzuolo con angoli', 'Fitted sheet'],
-  ['Lo specchio a figura intera', 'Full-length mirror'],
-  ['Il portagioie', 'Jewelry box'],
-  ['Il cesto per la biancheria', 'Laundry basket'],
-  ['Il portariviste', 'Magazine stand'],
-  ['Il materasso', 'Mattress'],
-  ['Il coprimaterasso', 'Mattress protector'],
-  ['Lo specchio', 'Mirror'],
-  ['Il cuscino', 'Pillow'],
-  ['La federa', 'Pillowcase'],
-  ['Il tappeto', 'Rug'],
-  ['Il letto singolo', 'Single bed'],
-  ['Il divano letto', 'Sofa bed'],
-  ['Il plaid', 'Throw blanket'],
-  ["Il cuscino d'arredo", 'Throw pillow'],
-  ['I giocattoli', 'Toys'],
-  ['La cabina armadio', 'Walk-in wardrobe'],
-  ["L'orologio da parete", 'Wall clock'],
-  ["L'armadio", 'Wardrobe'],
-];
+  .btn {
+    display: block;
+    width: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    padding: 16px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 12px;
+    transition: background 0.08s linear, color 0.08s linear;
+  }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn:active { transform: translateY(1px); }
+  .btn.solid {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn.solid:hover { background: var(--paper); color: var(--ink); }
+  .btn.small {
+    display: inline-block;
+    width: auto;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
 
-export const VOCAB_GARAGE_SHED = [
-  ['La scure', 'Axe'],
-  ['Il caricabatterie', 'Battery charger'],
-  ['Il tagliabulloni', 'Bolt cutters'],
-  ['La scopa', 'Broom'],
-  ['Il secchio', 'Bucket'],
-  ['La motosega', 'Chainsaw'],
-  ['Il piede di porco', 'Crowbar'],
-  ['La paletta per la polvere', 'Dustpan'],
-  ['La prolunga', 'Extension cord'],
-  ['La scala allungabile', 'Extension ladder'],
-  ['La torcia elettrica', 'Flashlight'],
-  ['Il pavimento', 'Floor'],
-  ['Il quadro elettrico', 'Fuse box'],
-  ['Il garage', 'Garage'],
-  ['La tanica di benzina', 'Gas can'],
-  ['Il martello', 'Hammer'],
-  ['Il tagliasiepi', 'Hedge trimmer'],
-  ['I cavi della batteria', 'Jumper cables'],
-  ['Il tagliaerba', 'Lawnmower'],
-  ['La serratura', 'Lock'],
-  ['I chiodi', 'Nails'],
-  ["L'auto in sosta", 'Parked car'],
-  ['Le pinze', 'Pliers'],
-  ['La scala portatile', 'Portable ladder'],
-  ['Il vaso per piante', 'Pot'],
-  ['La presa di corrente', 'Power socket'],
-  ['La ciabatta', 'Power strip'],
-  ["L'idropulitrice", 'Pressure washer'],
-  ['Il rastrello', 'Rake'],
-  ['La serranda', 'Roller shutter'],
-  ['Il capannetto', 'Shed'],
-  ['Il capanno', 'Shed'],
-  ['Il deposito', 'Storage'],
-  ['Il rubinetto', 'Tap'],
-  ['La cassetta degli attrezzi', 'Toolbox'],
-  ['Gli attrezzi', 'Tools'],
-  ["L'utenza", 'Utility connection'],
-  ['Il banco da lavoro', 'Workbench'],
-];
+  .rule { border: none; border-top: 1px solid var(--ink); margin: 24px 0; }
 
-export const VOCAB_GARDEN_OUTDOORS = [
-  ['La piscina fuori terra', 'Above-ground pool'],
-  ['Il barbecue', 'Barbecue'],
-  ['La mangiatoia per uccelli', 'Bird feeder'],
-  ['La casetta per uccelli', 'Birdhouse'],
-  ['Gli uccelli', 'Birds'],
-  ['Il gioco per bambini', "Children's play equipment"],
-  ['La sdraio', 'Deckchair'],
-  ['La cuccia del cane', 'Dog kennel'],
-  ["Il viale d'accesso", 'Driveway'],
-  ['La recinzione', 'Fence'],
-  ['Il braciere', 'Fire pit'],
-  ['La fontana', 'Fountain'],
-  ['Il portone', 'Front door'],
-  ['Il giardino', 'Garden'],
-  ['Il tubo da giardino', 'Garden hose'],
-  ['Il laghetto', 'Garden pond'],
-  ['Il casotto degli attrezzi', 'Garden shed'],
-  ['La statua da giardino', 'Garden statue'],
-  ['Il tavolino da giardino', 'Garden table'],
-  ["L'attrezzo per il giardinaggio", 'Gardening tool'],
-  ['Il cancello', 'Gate'],
-  ['Il gazebo', 'Gazebo'],
-  ["L'erba", 'Grass'],
-  ['La serra', 'Greenhouse'],
-  ['Il grill', 'Grill'],
-  ['La siepe', 'Hedge'],
-  ['Il prato', 'Lawn'],
-  ['La legnaia', 'Log store'],
-  ['Il muretto', 'Low wall'],
-  ['La buca delle lettere', 'Mailbox'],
-  ['Il fango', 'Mud'],
-  ['Il rubinetto da esterno', 'Outdoor tap'],
-  ['Al di fuori della casa', 'Outside the house'],
-  ["L'auto in sosta", 'Parked car'],
-  ['Il parcheggio', 'Parking space'],
-  ['Il patio', 'Patio'],
-  ['Il salotto da giardino', 'Patio furniture set'],
-  ['La stufa da esterno', 'Patio heater'],
-  ["L'ombrellone", 'Patio umbrella'],
-  ['Il pergolato', 'Pergola'],
-  ['Il vaso per piante', 'Plant pot'],
-  ['La pianta in vaso', 'Potted plant'],
-  ["L'idropulitrice", 'Pressure washer'],
-  ['Lo scivolo', 'Slide'],
-  ["L'altalena", 'Swing'],
-  ["L'albero", 'Tree'],
-  ["L'orto", 'Vegetable patch'],
-  ["L'annaffiatoio", 'Watering can'],
-  ['Il bidone della spazzatura', 'Wheelie bin'],
-];
+  /* --- Menu list --- */
+  .menu-item {
+    border: 2px solid var(--ink);
+    padding: 18px;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  .menu-item:hover { background: var(--ink); color: var(--paper); }
+  .menu-item .count { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .menu-item:hover .count { color: var(--muted); }
 
-export const VOCAB_HOUSE_FIXTURES = [
-  ['La soffitta', 'Attic'],
-  ['Il balcone', 'Balcony'],
-  ['La ringhiera', 'Bannister'],
-  ['Il seminterrato', 'Basement'],
-  ['La camera da letto', 'Bedroom'],
-  ['Le tende', 'Blinds'],
-  ['La moquette', 'Carpet'],
-  ['Il soffitto', 'Ceiling'],
-  ['La taverna', 'Cellar lounge'],
-  ['Il camino', 'Chimney'],
-  ['La colonna', 'Column'],
-  ['La casa indipendente', 'Detached House'],
-  ['La porta', 'Door'],
-  ['Il telaio della porta', 'Door frame'],
-  ['I doppi vetri', 'Double glazing'],
-  ['Lo scarico', 'Drain'],
-  ['Il cartongesso', 'Drywall'],
-  ["L'ascensore", 'Elevator'],
-  ['Il rubinetto', 'Faucet'],
-  ['Il caminetto', 'Fireplace'],
-  ['Il pavimento', 'Floor'],
-  ['Le fondamenta', 'Foundation'],
-  ['Il quadro elettrico', 'Fuse box'],
-  ['La grondaia', 'Gutter'],
-  ['Il corridoio', 'Hall'],
-  ['Il corrimano', 'Handrail'],
-  ['La casa', 'House'],
-  ["L'isolamento", 'Insulation'],
-  ["L'interruttore della luce", 'Lightswitch'],
-  ['La parete portante', 'Load-bearing wall'],
-  ['La sala da pranzo', 'Lunchroom'],
-  ['Il parquet', 'Parquet'],
-  ['La parete divisoria', 'Partition wall'],
-  ['Il tubo', 'Pipe'],
-  ["L'intonaco", 'Plaster'],
-  ['Il portico', 'Porch'],
-  ['Il radiatore', 'Radiator'],
-  ['La tapparella', 'Roller shutter'],
-  ['Il tetto', 'Roof'],
-  ['Il lavandino', 'Sink'],
-  ['Il battiscopa', 'Skirting board'],
-  ['Il lucernario', 'Skylight'],
-  ['La presa di corrente', 'Socket'],
-  ['La scala', 'Staircase'],
-  ["L'interruttore", 'Switch'],
-  ['Il terrazzo', 'Terrace'],
-  ['La piastrella', 'Tile'],
-  ["Le prese d'aria", 'Vents'],
-  ['La villa', 'Villa'],
-  ['Il muro', 'Wall'],
-  ['La carta da parati', 'Wallpaper'],
-  ['La finestra', 'Window'],
-  ['Il telaio della finestra', 'Window frame'],
-];
+  /* --- Scrollable list area (list grows independently, Back button stays put) --- */
+  .menu-list-scroll {
+    max-height: 460px;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+  }
+  .menu-list-scroll::-webkit-scrollbar { width: 6px; }
+  .menu-list-scroll::-webkit-scrollbar-track { background: transparent; }
+  .menu-list-scroll::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 3px; }
+  .menu-list-scroll .menu-item:last-child { margin-bottom: 4px; }
 
-export const VOCAB_KITCHEN_DINING = [
-  ['La carta da forno', 'Baking paper'],
-  ['La teglia', 'Baking tray'],
-  ['Il frullatore', 'Blender'],
-  ['La bottiglia', 'Bottle'],
-  ["L'apribottiglie", 'Bottle opener'],
-  ['La ciotola', 'Bowl'],
-  ['Il coltello da pane', 'Bread knife'],
-  ['La colazione', 'Breakfast'],
-  ["L'apriscatole", 'Can opener'],
-  ['La macchina del caffè', 'Coffee machine'],
-  ['Lo scolapasta', 'Colander'],
-  ['Il cavatappi', 'Corkscrew'],
-  ['La tazza', 'Cup'],
-  ['Le posate', 'Cutlery'],
-  ['Il tagliere', 'Cutting board'],
-  ['La cena', 'Dinner'],
-  ['La lavastoviglie', 'Dishwasher'],
-  ['La cappa', 'Extractor'],
-  ['La cappa da cucina', 'Extractor fan'],
-  ['La farina', 'Flour'],
-  ['La forchetta', 'Fork'],
-  ['Il congelatore', 'Freezer'],
-  ['Il frigorifero', 'Fridge'],
-  ['La padella', 'Frying pan'],
-  ["L'aglio", 'Garlic'],
-  ['Il bicchiere', 'Glass'],
-  ['Il minipimer', 'Immersion blender'],
-  ['Gli ingredienti', 'Ingredients'],
-  ['Il barattolo', 'Jar'],
-  ['Il bollitore', 'Kettle'],
-  ['La cucina', 'Kitchen'],
-  ['La bilancia', 'Kitchen scales'],
-  ['Le forbici da cucina', 'Kitchen scissors'],
-  ["L'orologio da cucina", 'Kitchen timer'],
-  ['Il coltello', 'Knife'],
-  ['Il mestolo', 'Ladle'],
-  ['Il coperchio', 'Lid'],
-  ['Il pranzo', 'Lunch'],
-  ['Il microonde', 'Microwave'],
-  ['La caffettiera', 'Moka'],
-  ['Il mortaio', 'Mortar'],
-  ['La tazza grande', 'Mug'],
-  ['Il tovagliolo', 'Napkin'],
-  ["L'olio d'oliva", 'Olive oil'],
-  ['Il forno', 'Oven'],
-  ['Il pelapatate', 'Peeler'],
-  ['Il pepe', 'Pepper'],
-  ['Il pestello', 'Pestle'],
-  ['La brocca', 'Pitcher'],
-  ['La tovaglietta', 'Placemat'],
-  ['Il piatto', 'Plate'],
-  ['La pentola', 'Pot'],
-  ['La ricetta', 'Recipe'],
-  ['Il mattarello', 'Rolling pin'],
-  ['Il sale', 'Salt'],
-  ['La casseruola', 'Saucepan'],
-  ['Il vassoio', 'Serving tray'],
-  ['Il lavandino', 'Sink'],
-  ['La ciotolina', 'Small bowl'],
-  ['Il piatto fondo', 'Soup bowl'],
-  ['La spatola', 'Spatula'],
-  ['Il cucchiaio', 'Spoon'],
-  ['Il coltello da carne', 'Steak knife'],
-  ['Il piano cottura', 'Stovetop'],
-  ['Il colino', 'Strainer'],
-  ['Lo zucchero', 'Sugar'],
-  ['La zuccheriera', 'Sugar bowl'],
-  ['Il tavolo', 'Table'],
-  ['La tovaglia', 'Tablecloth'],
-  ['La tazza da tè', 'Tea cup'],
-  ['Lo strofinaccio / Il canovaccio', 'Tea towel'],
-  ['Il cucchiaino', 'Teaspoon'],
-  ['La carta stagnola', 'Tin foil'],
-  ['Il tostapane', 'Toaster'],
-  ['Lo stuzzicadenti', 'Toothpick'],
-  ['Il cestino', 'Trash can'],
-  ["L'aceto", 'Vinegar'],
-  ["L'acqua", 'Water'],
-  ['La frusta', 'Whisk'],
-  ['Il calice da vino', 'Wine glass'],
-  ['Il cucchiaio di legno', 'Wooden spoon'],
-];
+  /* --- Game screen --- */
+  #screen-game { padding-top: 22px; }
+  .status-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    font-variant-numeric: tabular-nums;
+  }
+  .progress-track {
+    height: 4px;
+    background: color-mix(in srgb, var(--muted) 35%, var(--paper));
+    margin-bottom: 28px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--ink);
+    transition: width 0.15s linear;
+  }
+  .question-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 8px 0;
+  }
+  .question-text {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 28px 0;
+    line-height: 1.25;
+  }
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .option {
+    aspect-ratio: 2.1 / 1;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 19.55px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    transition: background 0.06s linear, color 0.06s linear, border-color 0.06s linear;
+  }
+  .option:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+  .option:disabled { cursor: default; }
+  .option.correct-flash {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .option.wrong-flash {
+    background: var(--paper);
+    color: var(--ink);
+    border-style: dashed;
+    border-color: var(--accent);
+  }
+  .option.reveal-correct {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  /* --- Blackout (recall) mode: text matches the box colour until hovered,
+     at which point the normal .option:hover rule (higher specificity)
+     takes over and reveals it exactly like a normal hover. --- */
+  .option.blacked {
+    color: var(--paper);
+  }
+  /* While hover-locked (briefly, right after a new question renders), this
+     overrides .option:hover:not(:disabled) — it's more specific (3 classes
+     + :hover vs. 2 classes + :not + :hover) — so a stray hover from the
+     mouse resting over a freshly-drawn option can't reveal it early. */
+  .option.blacked.hover-locked:hover {
+    background: var(--paper);
+    color: var(--paper);
+  }
 
-export const VOCAB_LIVING_ROOM = [
-  ['La poltrona', 'Armchair'],
-  ['La coperta', 'Blanket'],
-  ['La libreria', 'Bookshelf'],
-  ['La candela', 'Candle'],
-  ['La sedia', 'Chair'],
-  ['Il baule', 'Chest'],
-  ["L'orologio", 'Clock'],
-  ['Il sottobicchiere', 'Coaster'],
-  ['Il tavolino da caffè', 'Coffee table'],
-  ['La tenda', 'Curtain'],
-  ['Il cuscino', 'Cushion'],
-  ['Il camino', 'Fireplace'],
-  ['Il poggiapiedi', 'Footstool'],
-  ['Il mobile', 'Furniture'],
-  ['La pianta da appartamento', 'House plant'],
-  ['Il paralume', 'Lampshade'],
-  ['Il telefono fisso', 'Landline phone'],
-  ['Il soggiorno', 'Living room'],
-  ['Il portariviste', 'Magazine rack'],
-  ['Il quadro', 'Painting'],
-  ['Il pianoforte', 'Piano'],
-  ['Il radiatore', 'Radiator'],
-  ['Il giradischi', 'Record player'],
-  ['Il telecomando', 'Remote control'],
-  ['Il tappeto', 'Rug'],
-  ['Il divano', 'Sofa'],
-  ["L'altoparlante", 'Speaker'],
-  ['Lo stereo', 'Stereo system'],
-  ['Il tavolo', 'Table'],
-  ['Il televisore', 'Television'],
-  ['Il termostato', 'Thermostat'],
-  ['Il telecomando', 'TV remote control'],
-  ['Il mobile TV', 'TV unit'],
-  ['Il vaso', 'Vase'],
-  ['La finestra', 'Window'],
-];
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  .shake { animation: shake 0.28s linear; }
 
-export const VOCAB_STUDY = [
-  ['I fogli di carta', 'Sheets of paper'],
-  ['Il blocchetto da disegno', 'Sketchpad'],
-  ['Il blocco per appunti', 'Notepad'],
-  ['Il calamaio', 'Inkwell'],
-  ['Il calcolatore', 'Calculator'],
-  ['Il cancellino', 'Eraser'],
-  ['Il cartellone', 'Bulletin board'],
-  ['Il computer', 'Computer'],
-  ['Il computer fisso', 'Desktop computer'],
-  ['Il computer portatile', 'Laptop'],
-  ['Il distruggi documenti', 'Paper shredder'],
-  ['Il leggio', 'Book stand'],
-  ['Il monitor', 'Monitor'],
-  ['Il mouse', 'Mouse'],
-  ['Il mousepad', 'Mouse pad'],
-  ['Il proiettore', 'Projector'],
-  ['Il righello', 'Ruler'],
-  ['Il router Wi-Fi', 'Wi-Fi router'],
-  ['Il scanner', 'Scanner'],
-  ['Il tagliacarte', 'Letter opener'],
-  ['Il telefono', 'Desk phone'],
-  ['Il temperamatite', 'Pencil sharpener'],
-  ['Il timbro', 'Stamp'],
-  ["L'agenda", 'Planner'],
-  ["L'astuccio", 'Pencil case'],
-  ["L'evidenziatore", 'Highlighter'],
-  ["L'organizer da scrivania", 'Desk organiser'],
-  ['La gomma (per cancellare)', 'Eraser'],
-  ['La libreria', 'Bookcase'],
-  ['La matita', 'Pencil'],
-  ['La penna', 'Pen'],
-  ['La scrivania', 'Desk'],
-  ['La sedia ergonomica', 'Ergonomic chair'],
-  ['La stampante', 'Printer'],
-  ['La tastiera', 'Keyboard'],
-  ['La valigetta', 'Briefcase'],
-  ['Lo scaffale', 'Shelving unit'],
-  ['Lo studio', 'Study'],
-  ['Lo zaino', 'Backpack'],
-];
+  /* --- End screen --- */
+  .grade-block {
+    text-align: center;
+    padding: 28px 0 8px 0;
+  }
+  .grade-letter {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .score-line {
+    font-size: 16px;
+    margin-top: 10px;
+    color: var(--muted);
+  }
+  .tally-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin: 22px 0 8px 0;
+    font-size: 15px;
+  }
+  .tally-row b { font-size: 20px; display: block; }
 
-export const LISTS = {
-  are: { label: 'Regular -are verbs', pairs: VOCAB_ARE, footer: 'Regular -are verbs · ' + VOCAB_ARE.length + ' pairs' },
-  ere: { label: 'Regular -ere verbs', pairs: VOCAB_ERE, footer: 'Regular -ere verbs · ' + VOCAB_ERE.length + ' pairs' },
-  ereIrregular: { label: 'Irregular -ere verbs', pairs: VOCAB_ERE_IRREGULAR, footer: 'Irregular -ere verbs · ' + VOCAB_ERE_IRREGULAR.length + ' pairs' },
-};
+  .end-top-actions {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+  }
+  .end-top-actions .btn {
+    margin: 0;
+  }
+  .end-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .end-actions .btn {
+    flex: 1;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
 
-// ---------------------------------------------------------------------------
-// HOUSEHOLD_LISTS — the 8 sub-categories shown when "Household (La casa)" is
-// opened from the Vocabulary screen. Kept as its own registry (rather than
-// folded into LISTS above) because Household is itself a broader vocabulary
-// category that may sit alongside future ones (e.g. Clothes, Animals), each
-// getting its own screen and its own registry of sub-categories the same way.
-// ---------------------------------------------------------------------------
-export const HOUSEHOLD_LISTS = {
-  bathroom: { label: 'Bathroom (Il bagno)', pairs: VOCAB_BATHROOM, footer: 'Bathroom (Il bagno) · ' + VOCAB_BATHROOM.length + ' pairs' },
-  bedroom: { label: 'Bedroom (La camera da letto)', pairs: VOCAB_BEDROOM, footer: 'Bedroom (La camera da letto) · ' + VOCAB_BEDROOM.length + ' pairs' },
-  garageShed: { label: 'Garage & Shed (Garage e capanno)', pairs: VOCAB_GARAGE_SHED, footer: 'Garage & Shed (Garage e capanno) · ' + VOCAB_GARAGE_SHED.length + ' pairs' },
-  gardenOutdoors: { label: 'Garden & Outdoors (Giardino e spazi aperti)', pairs: VOCAB_GARDEN_OUTDOORS, footer: 'Garden & Outdoors (Giardino e spazi aperti) · ' + VOCAB_GARDEN_OUTDOORS.length + ' pairs' },
-  houseFixtures: { label: 'House Fixtures & Structure (Struttura e Infissi)', pairs: VOCAB_HOUSE_FIXTURES, footer: 'House Fixtures & Structure (Struttura e Infissi) · ' + VOCAB_HOUSE_FIXTURES.length + ' pairs' },
-  kitchenDining: { label: 'Kitchen & Dining (Cucina e sala da pranzo)', pairs: VOCAB_KITCHEN_DINING, footer: 'Kitchen & Dining (Cucina e sala da pranzo) · ' + VOCAB_KITCHEN_DINING.length + ' pairs' },
-  livingRoom: { label: 'Living Room (Il Soggiorno)', pairs: VOCAB_LIVING_ROOM, footer: 'Living Room (Il Soggiorno) · ' + VOCAB_LIVING_ROOM.length + ' pairs' },
-  study: { label: 'Study (Lo studio)', pairs: VOCAB_STUDY, footer: 'Study (Lo studio) · ' + VOCAB_STUDY.length + ' pairs' },
-};
-// NOTE: "Random (Casuale)" is NOT listed here — it isn't a fixed word list.
-// It's built at click-time in script.js by shuffling together all the pairs
-// from every list above and taking 50, so it draws fresh words each play.
+  .review-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid var(--ink);
+    margin: 18px 0;
+  }
+  .review-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 1px solid color-mix(in srgb, var(--muted) 45%, var(--paper));
+    font-size: 14px;
+  }
+  .review-row:last-child { border-bottom: none; }
+  .review-row .it { font-weight: 700; }
+  .review-row .en { color: var(--muted); }
 
-// ---------------------------------------------------------------------------
-// HOW TO ADD A NEW LIST (e.g. a new vocabulary topic or verb group)
-// ---------------------------------------------------------------------------
-// 1. Add a new "export const VOCAB_YOURNAME = [...]" array above, following
-//    the exact same [ "Italian", "English" ] pair format as the others.
-// 2. Add one new line inside LISTS (top-level, e.g. another verb group) or
-//    HOUSEHOLD_LISTS (another household sub-category), giving it a short key
-//    (used internally) and a label (shown on screen), e.g.:
-//
-//    yourKey: { label: 'Your List Name', pairs: VOCAB_YOURNAME,
-//               footer: 'Your List Name · ' + VOCAB_YOURNAME.length + ' pairs' },
-//
-// 3. That's it for the data side. To make it clickable on screen, you'll add
-//    one menu button in index.html and one line in script.js — covered
-//    separately, since that's layout/logic, not vocab.
+  .hidden { display: none !important; }
+
+  .footer-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 26px;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .frame { padding: 28px 18px; }
+    .question-text { font-size: 22px; }
+    .option { font-size: 17.25px; }
+    .grade-letter { font-size: 56px; }
+  }
