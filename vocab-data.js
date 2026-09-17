@@ -893,6 +893,7 @@ export const VOCAB_BATHROOM = [
 
 export const VOCAB_BEDROOM = [
   ['I giocattoli', 'Toys'],
+  ['I libri', 'Books'],
   ['I vestiti', 'Clothes'],
   ['Il cesto per la biancheria', 'Laundry basket'],
   ['Il comodino', 'Bedside table'],
@@ -911,11 +912,15 @@ export const VOCAB_BEDROOM = [
   ['Il piumino', 'Duvet'],
   ['Il plaid', 'Throw blanket'],
   ['Il portagioie', 'Jewelry box'],
+  ['Il portariviste', 'Magazine stand'],
+  ['Il set di scacchi', 'Chess set'],
   ['Il tappeto', 'Rug'],
   ['Il tavolo da toeletta', 'Dressing table'],
+  ['Il ventilatore da soffitto', 'Ceiling fan'],
   ["L'appendiabiti", 'Coat stand'],
   ["L'armadio", 'Wardrobe'],
   ["L'attaccapanni", 'Coat rack'],
+  ["L'orologio da parete", 'Wall clock'],
   ['La cabina armadio', 'Walk-in wardrobe'],
   ['La cassettiera', 'Chest of drawers'],
   ['La coperta', 'Blanket'],
