@@ -13,12 +13,15 @@
 // refer to it by that name in this file." The { } curly braces matter —
 // they mean "give me specifically the thing with this name", not
 // everything in the file. The './' at the start of each path means "look
-// in this same folder". LISTS (the verb lists) and HOUSEHOLD_LISTS (the
-// Household sub-category lists) live in separate files — verbs-data.js and
-// vocab-household.js — each with its own "?v=N" cache-busting number, so
-// either can be bumped independently when its content changes.
+// in this same folder". LISTS (the verb lists), HOUSEHOLD_LISTS (the
+// Household sub-category lists), and FOOD_DRINK_LISTS (the Food & Drink
+// sub-category lists) live in separate files — verbs-data.js,
+// vocab-household.js, and vocab-food-drink.js — each with its own "?v=N"
+// cache-busting number, so any one can be bumped independently when its
+// own content changes.
 import { LISTS } from './verbs-data.js?v=1';
 import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
+import { FOOD_DRINK_LISTS } from './vocab-food-drink.js?v=1';
 
   // ---------- colour schemes ----------
       const SCHEMES = [
@@ -113,11 +116,12 @@ import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
   const screenMenu      = document.getElementById('screen-menu');
   const screenVocab     = document.getElementById('screen-vocab');
   const screenHousehold = document.getElementById('screen-household');
+  const screenFoodDrink = document.getElementById('screen-food-drink');
   const screenGame      = document.getElementById('screen-game');
   const screenEnd       = document.getElementById('screen-end');
 
   function showScreen(el) {
-    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenGame, screenEnd].forEach(s => s.classList.add('hidden'));
+    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenFoodDrink, screenGame, screenEnd].forEach(s => s.classList.add('hidden'));
     el.classList.remove('hidden');
   }
 
@@ -148,6 +152,24 @@ import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
   // "Random (Casuale)" isn't a fixed list — build a fresh 50-word draw from
   // every household sub-category, re-shuffled each time it's played.
   document.getElementById('menu-item-hh-random').addEventListener('click', () => startRandomHousehold());
+
+  // "Food and drink (Cibo e bevande)" is a category, not a quiz — it
+  // navigates one level deeper to screen-food-drink rather than calling
+  // startGame.
+  document.getElementById('menu-item-food-drink-category').addEventListener('click', () => showScreen(screenFoodDrink));
+  document.getElementById('btn-back-vocab-from-food-drink').addEventListener('click', () => showScreen(screenVocab));
+
+  document.getElementById('menu-item-fd-barbeque').addEventListener('click', () => startGame('barbeque', screenFoodDrink, FOOD_DRINK_LISTS));
+  document.getElementById('menu-item-fd-breakfast').addEventListener('click', () => startGame('breakfast', screenFoodDrink, FOOD_DRINK_LISTS));
+  document.getElementById('menu-item-fd-dessert-sweets').addEventListener('click', () => startGame('dessertSweets', screenFoodDrink, FOOD_DRINK_LISTS));
+  document.getElementById('menu-item-fd-drinks').addEventListener('click', () => startGame('drinks', screenFoodDrink, FOOD_DRINK_LISTS));
+  document.getElementById('menu-item-fd-fruit-vegetables').addEventListener('click', () => startGame('fruitVegetables', screenFoodDrink, FOOD_DRINK_LISTS));
+  document.getElementById('menu-item-fd-lunch-dinner').addEventListener('click', () => startGame('lunchDinner', screenFoodDrink, FOOD_DRINK_LISTS));
+  document.getElementById('menu-item-fd-meat').addEventListener('click', () => startGame('meat', screenFoodDrink, FOOD_DRINK_LISTS));
+
+  // "Random (Casuale)" isn't a fixed list — build a fresh 50-word draw from
+  // every Food & Drink sub-category, re-shuffled each time it's played.
+  document.getElementById('menu-item-fd-random').addEventListener('click', () => startRandomFoodDrink());
 
   document.getElementById('game-home-btn').addEventListener('click', () => showScreen(screenStart));
   document.getElementById('game-back-btn').addEventListener('click', () => showScreen(gameSourceScreen || screenType));
@@ -239,6 +261,17 @@ import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
     const label = 'Random (Casuale)';
     const footer = label + ' · ' + randomPairs.length + ' pairs';
     startGameWithPairs(randomPairs, label, footer, screenHousehold, randomPairs);
+  }
+
+  // Same idea as startRandomHousehold(), but pools every Food & Drink
+  // sub-category instead. masterPool is set to this same 50-pair draw so
+  // multiple-choice distractors stay consistent with the active round.
+  function startRandomFoodDrink() {
+    const allFoodDrinkPairs = Object.values(FOOD_DRINK_LISTS).flatMap(list => list.pairs);
+    const randomPairs = shuffle(allFoodDrinkPairs).slice(0, 50);
+    const label = 'Random (Casuale)';
+    const footer = label + ' · ' + randomPairs.length + ' pairs';
+    startGameWithPairs(randomPairs, label, footer, screenFoodDrink, randomPairs);
   }
 
   function startGameWithPairs(pairs, label, footer, sourceScreen, pool) {
