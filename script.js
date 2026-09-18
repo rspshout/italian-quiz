@@ -317,6 +317,11 @@ import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
 
     const grid = document.getElementById('options-grid');
     grid.innerHTML = '';
+    // Exposed as a data attribute purely so style.css can lay out 6- and
+    // 8-option questions differently from 4 on narrow screens (a long
+    // single column of 8 answers is a lot of scrolling on a phone) —
+    // this line is the only thing tying game logic to that CSS choice.
+    grid.dataset.count = String(optionCount);
     optionPairs.forEach(p => {
       const btn = document.createElement('button');
       btn.className = 'option' + (blackout ? ' blacked hover-locked' : '');
