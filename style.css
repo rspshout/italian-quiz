@@ -368,12 +368,35 @@
 
     /* Answers stack one per row instead of two. This gives each answer
        the full content width, so long words wrap onto a second line
-       instead of needing to overflow a narrow column at all. */
+       instead of needing to overflow a narrow column at all. This is
+       the default for the 4-option mode. */
     .options-grid { grid-template-columns: 1fr; gap: 10px; }
     .option {
       aspect-ratio: auto;
       min-height: 58px;
       font-size: 18px;
       padding: 14px 16px;
+    }
+
+    /* 6- and 8-option modes: a single column of that many answers means
+       a lot of scrolling on a phone, so these go back to 2 columns
+       (3 rows for 6, 4 rows for 8) with smaller text to compensate. */
+    #options-grid[data-count="6"] {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    #options-grid[data-count="6"] .option {
+      min-height: 52px;
+      font-size: 15px;
+      padding: 10px 12px;
+    }
+    #options-grid[data-count="8"] {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    #options-grid[data-count="8"] .option {
+      min-height: 46px;
+      font-size: 14px;
+      padding: 8px 10px;
     }
   }
