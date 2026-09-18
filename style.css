@@ -168,11 +168,32 @@
     padding-right: 6px;
     scrollbar-width: thin;
     scrollbar-color: var(--muted) transparent;
+    /* Stops scroll momentum from "spilling over" into the page/iframe
+       once you hit the top or bottom of this inner list — without this,
+       scrolling the list on a phone can drag the whole page with it. */
+    overscroll-behavior: contain;
   }
   .menu-list-scroll::-webkit-scrollbar { width: 6px; }
   .menu-list-scroll::-webkit-scrollbar-track { background: transparent; }
   .menu-list-scroll::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 3px; }
   .menu-list-scroll .menu-item:last-child { margin-bottom: 4px; }
+
+  /* Auto-switch ANY menu list (Verbs, Vocabulary top-level, Household,
+     Food & Drink, and any future category) to two columns the moment it
+     has more than 5 items — i.e. as soon as a 6th .menu-item is present.
+     This is driven purely by how many .menu-item elements exist inside
+     a .menu-list-scroll, not by which screen or data file they came
+     from, so it applies automatically as each list grows — nothing here
+     needs editing again when a 4th verb list or a 21st vocab category
+     is added. */
+  .menu-list-scroll:has(.menu-item:nth-child(6)) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .menu-list-scroll:has(.menu-item:nth-child(6)) .menu-item {
+    margin-bottom: 0; /* the grid gap replaces this now */
+  }
 
   /* --- Game screen --- */
   #screen-game { padding-top: 22px; }
