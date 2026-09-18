@@ -21,6 +21,10 @@
     color: var(--ink);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
+    /* Safety net: nothing on the page should ever be able to force
+       horizontal scroll/zoom-out on mobile, even if a future change
+       introduces another overflow bug like the one below. */
+    overflow-x: hidden;
   }
   body {
     display: flex;
@@ -221,6 +225,16 @@
     text-align: center;
     padding: 10px;
     transition: background 0.06s linear, color 0.06s linear, border-color 0.06s linear;
+    /* Grid items default to min-width: auto, which lets a long,
+       spaceless word (e.g. "tagliacarte") push the box wider than its
+       grid column instead of wrapping. min-width: 0 lets the box
+       actually shrink to its track; word-break lets the text wrap
+       inside it. Together these stop the box from ever overflowing
+       the grid, which is what was forcing the whole page to zoom out
+       on narrow phone screens. */
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .option:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
   .option:disabled { cursor: default; }
@@ -341,9 +355,25 @@
     text-align: center;
   }
 
-  @media (max-width: 480px) {
-    .frame { padding: 28px 18px; }
+  @media (max-width: 560px) {
+    body { padding: 10px; }
+    /* Top padding goes UP, not down, on mobile: the scheme/count/dir
+       buttons are position:absolute at top:16px regardless of screen
+       size, so shrinking .frame's top padding (as before) made them
+       sit closer to the heading text, not further away. Side padding
+       drops hard instead, since that's the space you're not using. */
+    .frame { padding: 64px 12px 24px; }
     .question-text { font-size: 22px; }
-    .option { font-size: 17.25px; }
     .grade-letter { font-size: 56px; }
+
+    /* Answers stack one per row instead of two. This gives each answer
+       the full content width, so long words wrap onto a second line
+       instead of needing to overflow a narrow column at all. */
+    .options-grid { grid-template-columns: 1fr; gap: 10px; }
+    .option {
+      aspect-ratio: auto;
+      min-height: 58px;
+      font-size: 18px;
+      padding: 14px 16px;
+    }
   }
