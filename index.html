@@ -98,6 +98,10 @@
         <div>Household (La casa)</div>
         <div class="count">8 categories</div>
       </div>
+      <div class="menu-item" id="menu-item-food-drink-category">
+        <div>Food and drink (Cibo e bevande)</div>
+        <div class="count">8 categories</div>
+      </div>
     </div>
     <hr class="rule">
     <button class="btn" id="btn-back-start-from-vocab">Back</button>
@@ -158,6 +162,59 @@
     </div>
     <hr class="rule">
     <button class="btn" id="btn-back-vocab-from-household">Back</button>
+  </div>
+
+  <!-- FOOD AND DRINK SUB-CATEGORY MENU -->
+  <div id="screen-food-drink" class="hidden">
+    <div class="toolbar-right">
+      <button type="button" class="scheme-btn inline" id="scheme-btn-food-drink" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+        </svg>
+      </button>
+      <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
+      <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
+    </div>
+    <p class="kicker">FOOD AND DRINK (CIBO E BEVANDE)</p>
+    <h1>Select a list</h1>
+    <div class="menu-list-scroll" id="menu-list-food-drink">
+      <div class="menu-item" id="menu-item-fd-barbeque">
+        <div>Barbeque (Barbecue)</div>
+        <div class="count">23 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-fd-breakfast">
+        <div>Breakfast (Colazione)</div>
+        <div class="count">27 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-fd-dessert-sweets">
+        <div>Dessert & Sweets (Dessert e dolci)</div>
+        <div class="count">37 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-fd-drinks">
+        <div>Drinks (Bevande)</div>
+        <div class="count">52 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-fd-fruit-vegetables">
+        <div>Fruit & Vegetables (Frutta e verdura)</div>
+        <div class="count">45 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-fd-lunch-dinner">
+        <div>Lunch & Dinner (Pranzo e Cena)</div>
+        <div class="count">65 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-fd-meat">
+        <div>Meat (La carne)</div>
+        <div class="count">31 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-fd-random">
+        <div>Random (Casuale)</div>
+        <div class="count">50 questions</div>
+      </div>
+    </div>
+    <hr class="rule">
+    <button class="btn" id="btn-back-vocab-from-food-drink">Back</button>
   </div>
 
   <!-- GAME SCREEN -->
@@ -231,7 +288,7 @@
   rather than double-clicked — modules refuse to load over a plain
   file:// path.
 -->
-<script type="module" src="script.js?v=11"></script>
+<script type="module" src="script.js?v=12"></script>
 
 </body>
 </html>
