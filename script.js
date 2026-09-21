@@ -292,26 +292,27 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   // Builds a fresh 30-pair "Random (Casuale)" round by pooling every
   // household sub-category together and shuffling. Runs again from scratch
   // each time the tile is clicked, so a new draw appears every play.
-  // masterPool is set to this same 30-pair draw (not the full ~399-pair
-  // pool) so multiple-choice distractors stay consistent with how every
-  // other list already works: drawn from the list actually being played.
+  // masterPool is the FULL household pool (every sub-category, not just
+  // the 30 drawn here) so multiple-choice distractors can come from any
+  // household word, not only the ones in this particular round.
   function startRandomHousehold() {
     const allHouseholdPairs = Object.values(HOUSEHOLD_LISTS).flatMap(list => list.pairs);
     const randomPairs = shuffle(allHouseholdPairs).slice(0, 30);
     const label = 'Random (Casuale)';
     const footer = label + ' · ' + randomPairs.length + ' pairs';
-    startGameWithPairs(randomPairs, label, footer, screenHousehold, randomPairs, false, false);
+    startGameWithPairs(randomPairs, label, footer, screenHousehold, allHouseholdPairs, false, false);
   }
 
   // Same idea as startRandomHousehold(), but pools every Food & Drink
-  // sub-category instead. masterPool is set to this same 30-pair draw so
-  // multiple-choice distractors stay consistent with the active round.
+  // sub-category instead. masterPool is the FULL Food & Drink pool, so
+  // distractors can come from any Food & Drink word, not just this
+  // round's 30.
   function startRandomFoodDrink() {
     const allFoodDrinkPairs = Object.values(FOOD_DRINK_LISTS).flatMap(list => list.pairs);
     const randomPairs = shuffle(allFoodDrinkPairs).slice(0, 30);
     const label = 'Random (Casuale)';
     const footer = label + ' · ' + randomPairs.length + ' pairs';
-    startGameWithPairs(randomPairs, label, footer, screenFoodDrink, randomPairs, false, false);
+    startGameWithPairs(randomPairs, label, footer, screenFoodDrink, allFoodDrinkPairs, false, false);
   }
 
   // "A to Z" full mode: plays VOCAB_A_TO_Z (or just the slice starting with
@@ -335,13 +336,15 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   // full A-to-Z list each time it's played, then sorts that sample back
   // into alphabetical order before play — the SELECTION is random, but
   // (unlike every other Random mode) the playthrough order still isn't.
-  // az-letter-btn doesn't apply here, so showAzLetterBtn stays false.
+  // masterPool is the FULL 643-word A-to-Z list, so distractors can come
+  // from any A-to-Z word, not just this round's 30. az-letter-btn doesn't
+  // apply here, so showAzLetterBtn stays false.
   function startRandomAtoZ() {
     const randomPairs = shuffle(VOCAB_A_TO_Z).slice(0, 30)
       .sort((a, b) => a[0].localeCompare(b[0], 'it'));
     const label = 'A to Z - Random (Casuale)';
     const footer = label + ' · ' + randomPairs.length + ' pairs';
-    startGameWithPairs(randomPairs, label, footer, screenAtoZ, randomPairs, true, false);
+    startGameWithPairs(randomPairs, label, footer, screenAtoZ, VOCAB_A_TO_Z, true, false);
   }
 
   function startGameWithPairs(pairs, label, footer, sourceScreen, pool, noShuffle, showAzLetterBtn) {
