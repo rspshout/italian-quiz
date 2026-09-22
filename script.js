@@ -22,6 +22,7 @@
 import { LISTS } from './verbs-data.js?v=1';
 import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
 import { FOOD_DRINK_LISTS } from './vocab-food-drink.js?v=1';
+import { TRAVEL_VEHICLES_LISTS } from './vocab-travel-vehicles.js?v=1';
 import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
 
   // ---------- colour schemes ----------
@@ -120,12 +121,13 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   const screenVocab     = document.getElementById('screen-vocab');
   const screenHousehold = document.getElementById('screen-household');
   const screenFoodDrink = document.getElementById('screen-food-drink');
+  const screenTravelVehicles = document.getElementById('screen-travel-vehicles');
   const screenAtoZ      = document.getElementById('screen-a-to-z');
   const screenGame      = document.getElementById('screen-game');
   const screenEnd       = document.getElementById('screen-end');
 
   function showScreen(el) {
-    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenFoodDrink, screenAtoZ, screenGame, screenEnd].forEach(s => s.classList.add('hidden'));
+    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenFoodDrink, screenTravelVehicles, screenAtoZ, screenGame, screenEnd].forEach(s => s.classList.add('hidden'));
     el.classList.remove('hidden');
   }
 
@@ -175,6 +177,20 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   // "Random (Casuale)" isn't a fixed list — build a fresh 30-word draw from
   // every Food & Drink sub-category, re-shuffled each time it's played.
   document.getElementById('menu-item-fd-random').addEventListener('click', () => startRandomFoodDrink());
+
+  // "Travel and vehicles (Viaggi e veicoli)" is a category, not a quiz —
+  // it navigates one level deeper to screen-travel-vehicles rather than
+  // calling startGame.
+  document.getElementById('menu-item-travel-vehicles-category').addEventListener('click', () => showScreen(screenTravelVehicles));
+  document.getElementById('btn-back-vocab-from-travel-vehicles').addEventListener('click', () => showScreen(screenVocab));
+
+  document.getElementById('menu-item-tv-travel').addEventListener('click', () => startGame('travel', screenTravelVehicles, TRAVEL_VEHICLES_LISTS));
+  document.getElementById('menu-item-tv-vehicles').addEventListener('click', () => startGame('vehicles', screenTravelVehicles, TRAVEL_VEHICLES_LISTS));
+
+  // "Random (Casuale)" isn't a fixed list — build a fresh 30-word draw from
+  // both Travel and Vehicles pooled together, re-shuffled each time it's
+  // played.
+  document.getElementById('menu-item-tv-random').addEventListener('click', () => startRandomTravelVehicles());
 
   // "A to Z" sits directly under screen-type (like Verbs/Vocabulary), and
   // itself has two modes rather than sub-category tiles: the full
@@ -313,6 +329,18 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
     const label = 'Random (Casuale)';
     const footer = label + ' · ' + randomPairs.length + ' pairs';
     startGameWithPairs(randomPairs, label, footer, screenFoodDrink, allFoodDrinkPairs, false, false);
+  }
+
+  // Same idea as startRandomHousehold() / startRandomFoodDrink(), but pools
+  // Travel and Vehicles together. masterPool is the FULL Travel & Vehicles
+  // pool, so distractors can come from any word in either sub-category,
+  // not just this round's 30.
+  function startRandomTravelVehicles() {
+    const allTravelVehiclesPairs = Object.values(TRAVEL_VEHICLES_LISTS).flatMap(list => list.pairs);
+    const randomPairs = shuffle(allTravelVehiclesPairs).slice(0, 30);
+    const label = 'Random (Casuale)';
+    const footer = label + ' · ' + randomPairs.length + ' pairs';
+    startGameWithPairs(randomPairs, label, footer, screenTravelVehicles, allTravelVehiclesPairs, false, false);
   }
 
   // "A to Z" full mode: plays VOCAB_A_TO_Z (or just the slice starting with
