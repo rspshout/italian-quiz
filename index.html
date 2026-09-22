@@ -105,6 +105,10 @@
         <div>Food and drink (Cibo e bevande)</div>
         <div class="count">8 categories</div>
       </div>
+      <div class="menu-item" id="menu-item-travel-vehicles-category">
+        <div>Travel and vehicles (Viaggi e veicoli)</div>
+        <div class="count">2 categories</div>
+      </div>
     </div>
     <hr class="rule">
     <button class="btn" id="btn-back-start-from-vocab">Back</button>
@@ -220,6 +224,39 @@
     <button class="btn" id="btn-back-vocab-from-food-drink">Back</button>
   </div>
 
+  <!-- TRAVEL AND VEHICLES SUB-CATEGORY MENU -->
+  <div id="screen-travel-vehicles" class="hidden">
+    <div class="toolbar-right">
+      <button type="button" class="scheme-btn inline" id="scheme-btn-travel-vehicles" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+        <svg viewBox="0 0 24 24" width="18" height="18">
+          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+        </svg>
+      </button>
+      <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
+      <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
+    </div>
+    <p class="kicker">TRAVEL AND VEHICLES (VIAGGI E VEICOLI)</p>
+    <h1>Select a list</h1>
+    <div class="menu-list-scroll" id="menu-list-travel-vehicles">
+      <div class="menu-item" id="menu-item-tv-travel">
+        <div>Travel (Viaggiare)</div>
+        <div class="count">35 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-tv-vehicles">
+        <div>Vehicles (Veicoli)</div>
+        <div class="count">34 questions</div>
+      </div>
+      <div class="menu-item" id="menu-item-tv-random">
+        <div>Random (Casuale)</div>
+        <div class="count">30 questions</div>
+      </div>
+    </div>
+    <hr class="rule">
+    <button class="btn" id="btn-back-vocab-from-travel-vehicles">Back</button>
+  </div>
+
   <!-- A TO Z MODE MENU -->
   <div id="screen-a-to-z" class="hidden">
     <div class="toolbar-right">
@@ -320,7 +357,7 @@
   rather than double-clicked — modules refuse to load over a plain
   file:// path.
 -->
-<script type="module" src="script.js?v=15"></script>
+<script type="module" src="script.js?v=16"></script>
 
 </body>
 </html>
