@@ -23,6 +23,7 @@ import { LISTS } from './verbs-data.js?v=1';
 import { HOUSEHOLD_LISTS } from './vocab-household.js?v=1';
 import { FOOD_DRINK_LISTS } from './vocab-food-drink.js?v=1';
 import { TRAVEL_VEHICLES_LISTS } from './vocab-travel-vehicles.js?v=1';
+import { ANIMALS_LISTS } from './vocab-animals.js?v=1';
 import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
 
   // ---------- colour schemes ----------
@@ -122,12 +123,13 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   const screenHousehold = document.getElementById('screen-household');
   const screenFoodDrink = document.getElementById('screen-food-drink');
   const screenTravelVehicles = document.getElementById('screen-travel-vehicles');
+  const screenAnimals   = document.getElementById('screen-animals');
   const screenAtoZ      = document.getElementById('screen-a-to-z');
   const screenGame      = document.getElementById('screen-game');
   const screenEnd       = document.getElementById('screen-end');
 
   function showScreen(el) {
-    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenFoodDrink, screenTravelVehicles, screenAtoZ, screenGame, screenEnd].forEach(s => s.classList.add('hidden'));
+    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenFoodDrink, screenTravelVehicles, screenAnimals, screenAtoZ, screenGame, screenEnd].forEach(s => s.classList.add('hidden'));
     el.classList.remove('hidden');
   }
 
@@ -191,6 +193,23 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   // both Travel and Vehicles pooled together, re-shuffled each time it's
   // played.
   document.getElementById('menu-item-tv-random').addEventListener('click', () => startRandomTravelVehicles());
+
+  // "Animals (Gli animali)" is a category, not a quiz — it navigates one
+  // level deeper to screen-animals rather than calling startGame.
+  document.getElementById('menu-item-animals-category').addEventListener('click', () => showScreen(screenAnimals));
+  document.getElementById('btn-back-vocab-from-animals').addEventListener('click', () => showScreen(screenVocab));
+
+  document.getElementById('menu-item-an-animals').addEventListener('click', () => startGame('animals', screenAnimals, ANIMALS_LISTS));
+  document.getElementById('menu-item-an-baby-animals').addEventListener('click', () => startGame('babyAnimals', screenAnimals, ANIMALS_LISTS));
+  document.getElementById('menu-item-an-birds').addEventListener('click', () => startGame('birds', screenAnimals, ANIMALS_LISTS));
+  document.getElementById('menu-item-an-bugs').addEventListener('click', () => startGame('bugs', screenAnimals, ANIMALS_LISTS));
+  document.getElementById('menu-item-an-fish-sealife').addEventListener('click', () => startGame('fishSealife', screenAnimals, ANIMALS_LISTS));
+  document.getElementById('menu-item-an-pets').addEventListener('click', () => startGame('pets', screenAnimals, ANIMALS_LISTS));
+
+  // "Random (Casuale)" isn't a fixed list — build a fresh 30-word draw from
+  // every Animals sub-category pooled together, re-shuffled each time it's
+  // played.
+  document.getElementById('menu-item-an-random').addEventListener('click', () => startRandomAnimals());
 
   // "A to Z" sits directly under screen-type (like Verbs/Vocabulary), and
   // itself has two modes rather than sub-category tiles: the full
@@ -341,6 +360,17 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
     const label = 'Random (Casuale)';
     const footer = label + ' · ' + randomPairs.length + ' pairs';
     startGameWithPairs(randomPairs, label, footer, screenTravelVehicles, allTravelVehiclesPairs, false, false);
+  }
+
+  // Same idea as the other category Random modes, but pools every Animals
+  // sub-category together. masterPool is the FULL Animals pool, so
+  // distractors can come from any Animals word, not just this round's 30.
+  function startRandomAnimals() {
+    const allAnimalsPairs = Object.values(ANIMALS_LISTS).flatMap(list => list.pairs);
+    const randomPairs = shuffle(allAnimalsPairs).slice(0, 30);
+    const label = 'Random (Casuale)';
+    const footer = label + ' · ' + randomPairs.length + ' pairs';
+    startGameWithPairs(randomPairs, label, footer, screenAnimals, allAnimalsPairs, false, false);
   }
 
   // "A to Z" full mode: plays VOCAB_A_TO_Z (or just the slice starting with
