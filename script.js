@@ -164,13 +164,15 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   const screenAtoZ      = document.getElementById('screen-a-to-z');
   const screenGame      = document.getElementById('screen-game');
   const screenEnd       = document.getElementById('screen-end');
+  const screenAbout     = document.getElementById('screen-about');
 
   function showScreen(el) {
-    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenFoodDrink, screenTravelVehicles, screenAnimals, screenAtoZ, screenGame, screenEnd].forEach(s => s.classList.add('hidden'));
+    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenFoodDrink, screenTravelVehicles, screenAnimals, screenAtoZ, screenGame, screenEnd, screenAbout].forEach(s => s.classList.add('hidden'));
     el.classList.remove('hidden');
   }
 
   document.getElementById('btn-goto-menu').addEventListener('click', () => showScreen(screenType));
+  document.getElementById('btn-goto-about').addEventListener('click', () => showScreen(screenAbout));
   document.getElementById('type-item-verbs').addEventListener('click', () => showScreen(screenMenu));
   document.getElementById('type-item-vocab').addEventListener('click', () => showScreen(screenVocab));
   document.getElementById('type-item-atoz').addEventListener('click', () => showScreen(screenAtoZ));
@@ -280,6 +282,8 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   document.getElementById('a-to-z-back-btn').addEventListener('click', () => showScreen(screenType));
   document.getElementById('game-back-btn').addEventListener('click', () => showScreen(gameSourceScreen || screenType));
   document.getElementById('end-back-btn').addEventListener('click', () => showScreen(gameSourceScreen || screenType));
+  document.getElementById('about-back-btn').addEventListener('click', () => showScreen(screenStart));
+  document.getElementById('btn-back-start-from-about').addEventListener('click', () => showScreen(screenStart));
 
   function questionLangIdx() { return currentAtoZMode ? 0 : (direction === 'it2en' ? 0 : 1); } // index into a [Italian, English] pair used for the question — A to Z always asks the Italian word
   function optionLangIdx()   { return currentAtoZMode ? 1 : (direction === 'it2en' ? 1 : 0); } // index used for the multiple-choice options — A to Z always answers in English
