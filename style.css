@@ -19,7 +19,7 @@
     margin: 0; padding: 0;
     background: var(--paper);
     color: var(--ink);
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     height: 100%;
     /* Safety net: nothing on the page should ever be able to force
        horizontal scroll/zoom-out on mobile, even if a future change
@@ -40,7 +40,7 @@
     padding: 40px 32px;
     position: relative;
   }
-  .scheme-btn, .nav-btn {
+  .scheme-btn, .nav-btn, .font-btn {
     position: absolute;
     top: 16px;
     width: 36px;
@@ -56,15 +56,29 @@
     transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.2s linear, background 0.2s linear;
   }
   .scheme-btn { right: 16px; }
-  .scheme-btn.inline { position: static; }
-  .scheme-btn.corner-left { left: 16px; right: auto; }
-  .scheme-btn:hover {
+  .scheme-btn.corner-left { left: 104px; right: auto; }
+  .scheme-btn:hover,
+  .font-btn:hover {
     transform: scale(1.14) rotate(10deg);
     box-shadow: 0 0 0 4px var(--accent);
   }
-  .scheme-btn:active { transform: scale(0.92) rotate(0deg); }
-  .scheme-btn svg { display: block; }
+  .scheme-btn:active,
+  .font-btn:active { transform: scale(0.92) rotate(0deg); }
+  .scheme-btn svg,
+  .font-btn svg { display: block; }
   .scheme-btn .swatch { transition: fill 0.2s linear; }
+
+  /* Font-toggle button: same circle shape and hover reaction as
+     .scheme-btn (grouped into the shared rules above and the hover/
+     active rules), but its own class end-to-end — it must NOT carry
+     .scheme-btn itself, or it gets picked up by the colour-scheme click
+     handler (document.querySelectorAll('.scheme-btn')) as well as its
+     own, cycling both on a single click. Every screen now shows the
+     same four-button row top-left (Home, Back, Colour, Font), so
+     .corner-left (148px, one slot beyond the colour button's 104px) is
+     the only positioning this ever needs. */
+  .font-btn { right: 60px; }
+  .font-btn.corner-left { left: 148px; right: auto; }
 
   .nav-btn:hover {
     transform: scale(1.14) rotate(-10deg);
@@ -72,8 +86,21 @@
   }
   .nav-btn:active { transform: scale(0.92) rotate(0deg); }
   .nav-btn svg { display: block; }
-  #game-home-btn { left: 60px; }
-  #game-back-btn { left: 104px; }
+  /* Every screen now shows the same top-left row: Home (16px), Back
+     (60px), Colour (.scheme-btn.corner-left, 104px), Font
+     (.font-btn.corner-left, 148px) — one consistent cluster instead of
+     the buttons jumping between corners screen to screen. */
+  .home-btn { left: 16px; }
+  .back-btn { left: 60px; }
+  /* The start screen's Back button has nowhere to go (it's the very
+     first screen), so it's rendered disabled rather than invented a
+     destination: still visible for row consistency, but visibly inert
+     and non-interactive. */
+  .nav-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+    pointer-events: none;
+  }
 
   .toolbar-right {
     position: absolute;
@@ -196,7 +223,12 @@
   }
 
   /* --- Game screen --- */
-  #screen-game { padding-top: 22px; }
+  /* Every screen now carries the top-left Home/Back/Colour/Font row, so
+     every screen needs the same extra clearance the game screen already
+     used, pushing the kicker/heading text down clear of the buttons. */
+  #screen-start, #screen-type, #screen-menu, #screen-vocab,
+  #screen-household, #screen-food-drink, #screen-travel-vehicles,
+  #screen-animals, #screen-a-to-z, #screen-game { padding-top: 22px; }
   .status-row {
     display: flex;
     justify-content: space-between;
