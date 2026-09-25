@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verbs and Vocabulary Quiz</title>
-<link rel="stylesheet" href="style.css?v=13">
+<link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
 
@@ -39,7 +39,10 @@
     <h1>Verbs and Vocabulary Quiz</h1>
     <p>Practice your Italian by answering multiple-choice questions</p>
     <hr class="rule">
-    <button class="btn solid" id="btn-goto-menu">Start</button>
+    <div class="start-actions">
+      <button class="btn solid btn-start" id="btn-goto-menu">Start</button>
+      <button class="btn btn-about" id="btn-goto-about">About</button>
+    </div>
   </div>
 
   <!-- TYPE SELECTION -->
@@ -569,6 +572,41 @@
     <div id="review-list" class="review-list hidden"></div>
   </div>
 
+  <!-- ABOUT SCREEN -->
+  <div id="screen-about" class="hidden">
+    <button type="button" class="nav-btn home-btn" id="about-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="about-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-about" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-about" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
+      </svg>
+    </button>
+    <p class="kicker">ABOUT</p>
+    <h1>A Sanctuary for Learners</h1>
+    <p>This tool is built to provide a quiet, distraction-free space dedicated to helping you master Italian vocabulary. It is completely free and advert-free, allowing you to study without noise, artificial limits, or commercial and gamification interruptions.</p>
+    <p>I hope you enjoy using the platform. Should you have any comments or feedback, you can write to the developers at: <a href="mailto:XYZ" id="about-contact-link">XYZ</a>.</p>
+    <p>If you would like to show your appreciation, you can support [Content Creator Name]'s work by leaving a tip <a href="#" id="about-tip-link">here</a>. Contributions are warmly welcomed and deeply appreciated, but are entirely optional.</p>
+    <p class="about-motto"><em>Chi va piano, va sano e va lontano.</em></p>
+    <hr class="rule">
+    <button class="btn" id="btn-back-start-from-about">Back</button>
+  </div>
+
 </div>
 
 <!--
@@ -579,7 +617,7 @@
   rather than double-clicked — modules refuse to load over a plain
   file:// path.
 -->
-<script type="module" src="script.js?v=20"></script>
+<script type="module" src="script.js?v=21"></script>
 
 </body>
 </html>
