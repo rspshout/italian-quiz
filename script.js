@@ -63,6 +63,43 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
 
   applyScheme(schemeIndex);
 
+  // ---------- font toggle ----------
+  // A circular .font-btn (styled and hover-animated identically to
+  // .scheme-btn, via the same shared class) appears on every screen and
+  // cycles the app's global font. Helvetica Neue is not offered here at
+  // all — it didn't fix the "Il" legibility problem — and Verdana is now
+  // the permanent default (see style.css's html, body font-family), so
+  // it stays first in this list too.
+  const FONT_PRESETS = [
+    { name: 'Verdana / Humanist Sans',   family: "Verdana, Geneva, sans-serif" },
+    { name: 'Georgia / Serif',           family: "Georgia, 'Times New Roman', serif" },
+    { name: 'Courier New / Monospace',   family: "'Courier New', Courier, monospace" },
+    { name: 'Chalkboard / Handwriting',  family: "'Chalkboard SE', 'Comic Sans MS', 'Segoe Print', cursive" },
+  ];
+  let fontIndex = 0;
+
+  function applyFont(idx) {
+    const f = FONT_PRESETS[idx];
+    document.documentElement.style.fontFamily = f.family;
+    document.body.style.fontFamily = f.family;
+    document.querySelectorAll('.font-btn').forEach(btn => {
+      btn.title = 'Change font (current: ' + f.name + ')';
+    });
+    // The "Aa" glyph inside each font button is rendered in the font it
+    // would switch TO from here — i.e. the currently active one — so it
+    // always previews what's currently applied, not a fixed placeholder.
+    document.querySelectorAll('.font-btn-glyph').forEach(glyph => {
+      glyph.style.fontFamily = f.family;
+    });
+  }
+
+  document.querySelectorAll('.font-btn').forEach(btn => btn.addEventListener('click', () => {
+    fontIndex = (fontIndex + 1) % FONT_PRESETS.length;
+    applyFont(fontIndex);
+  }));
+
+  applyFont(fontIndex);
+
   // ---------- state ----------
   let VOCAB = [];        // active list's [Italian, English] pairs
   let currentListLabel = '';
@@ -223,8 +260,26 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   });
   document.getElementById('menu-item-atoz-random').addEventListener('click', () => startRandomAtoZ());
 
-  document.getElementById('game-home-btn').addEventListener('click', () => showScreen(screenStart));
+  // Every Home button does the exact same thing everywhere, so — like
+  // the scheme/font toggles above — it's wired once via its shared
+  // class rather than once per screen.
+  document.querySelectorAll('.home-btn').forEach(btn => btn.addEventListener('click', () => showScreen(screenStart)));
+
+  // Back buttons go to a different screen depending which screen
+  // they're on, so each is wired individually here — mirroring exactly
+  // where that same screen's existing full-width "Back" button goes.
+  // The start screen's Back button is disabled (nothing to go back to
+  // from the very first screen), so it has no listener.
+  document.getElementById('type-back-btn').addEventListener('click', () => showScreen(screenStart));
+  document.getElementById('menu-back-btn').addEventListener('click', () => showScreen(screenType));
+  document.getElementById('vocab-back-btn').addEventListener('click', () => showScreen(screenType));
+  document.getElementById('household-back-btn').addEventListener('click', () => showScreen(screenVocab));
+  document.getElementById('food-drink-back-btn').addEventListener('click', () => showScreen(screenVocab));
+  document.getElementById('travel-vehicles-back-btn').addEventListener('click', () => showScreen(screenVocab));
+  document.getElementById('animals-back-btn').addEventListener('click', () => showScreen(screenVocab));
+  document.getElementById('a-to-z-back-btn').addEventListener('click', () => showScreen(screenType));
   document.getElementById('game-back-btn').addEventListener('click', () => showScreen(gameSourceScreen || screenType));
+  document.getElementById('end-back-btn').addEventListener('click', () => showScreen(gameSourceScreen || screenType));
 
   function questionLangIdx() { return currentAtoZMode ? 0 : (direction === 'it2en' ? 0 : 1); } // index into a [Italian, English] pair used for the question — A to Z always asks the Italian word
   function optionLangIdx()   { return currentAtoZMode ? 1 : (direction === 'it2en' ? 1 : 0); } // index used for the multiple-choice options — A to Z always answers in English
