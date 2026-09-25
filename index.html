@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verbs and Vocabulary Quiz</title>
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
 
@@ -12,11 +12,27 @@
 
   <!-- START SCREEN -->
   <div id="screen-start">
-    <button type="button" class="scheme-btn" id="scheme-btn-start" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+    <button type="button" class="nav-btn home-btn" id="start-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="start-back-btn" title="Back" aria-label="Go back to the previous screen" disabled>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-start" title="Cycle colour scheme" aria-label="Cycle colour scheme">
       <svg viewBox="0 0 24 24" width="18" height="18">
         <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
         <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
         <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-start" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
       </svg>
     </button>
     <p class="kicker">ITALIAN VOCAB TRAINER</p>
@@ -28,11 +44,27 @@
 
   <!-- TYPE SELECTION -->
   <div id="screen-type" class="hidden">
-    <button type="button" class="scheme-btn" id="scheme-btn-type" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+    <button type="button" class="nav-btn home-btn" id="type-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="type-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-type" title="Cycle colour scheme" aria-label="Cycle colour scheme">
       <svg viewBox="0 0 24 24" width="18" height="18">
         <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
         <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
         <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-type" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
       </svg>
     </button>
     <p class="kicker">WHAT DO YOU WANT TO PRACTISE?</p>
@@ -52,14 +84,30 @@
 
   <!-- CATEGORY MENU (VERBS) -->
   <div id="screen-menu" class="hidden">
+    <button type="button" class="nav-btn home-btn" id="menu-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="menu-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-menu" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-menu" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
+      </svg>
+    </button>
     <div class="toolbar-right">
-      <button type="button" class="scheme-btn inline" id="scheme-btn-menu" title="Cycle colour scheme" aria-label="Cycle colour scheme">
-        <svg viewBox="0 0 24 24" width="18" height="18">
-          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
-        </svg>
-      </button>
       <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
       <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
     </div>
@@ -85,15 +133,29 @@
 
   <!-- CATEGORY MENU (VOCABULARY) -->
   <div id="screen-vocab" class="hidden">
-    <div class="toolbar-right">
-      <button type="button" class="scheme-btn inline" id="scheme-btn-vocab" title="Cycle colour scheme" aria-label="Cycle colour scheme">
-        <svg viewBox="0 0 24 24" width="18" height="18">
-          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
-        </svg>
-      </button>
-    </div>
+    <button type="button" class="nav-btn home-btn" id="vocab-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="vocab-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-vocab" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-vocab" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
+      </svg>
+    </button>
     <p class="kicker">CHOOSE A CATEGORY</p>
     <h1>Select a category</h1>
     <div class="menu-list-scroll" id="menu-list-vocab">
@@ -120,14 +182,30 @@
 
   <!-- HOUSEHOLD SUB-CATEGORY MENU -->
   <div id="screen-household" class="hidden">
+    <button type="button" class="nav-btn home-btn" id="household-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="household-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-household" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-household" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
+      </svg>
+    </button>
     <div class="toolbar-right">
-      <button type="button" class="scheme-btn inline" id="scheme-btn-household" title="Cycle colour scheme" aria-label="Cycle colour scheme">
-        <svg viewBox="0 0 24 24" width="18" height="18">
-          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
-        </svg>
-      </button>
       <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
       <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
     </div>
@@ -177,14 +255,30 @@
 
   <!-- FOOD AND DRINK SUB-CATEGORY MENU -->
   <div id="screen-food-drink" class="hidden">
+    <button type="button" class="nav-btn home-btn" id="food-drink-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="food-drink-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-food-drink" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-food-drink" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
+      </svg>
+    </button>
     <div class="toolbar-right">
-      <button type="button" class="scheme-btn inline" id="scheme-btn-food-drink" title="Cycle colour scheme" aria-label="Cycle colour scheme">
-        <svg viewBox="0 0 24 24" width="18" height="18">
-          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
-        </svg>
-      </button>
       <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
       <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
     </div>
@@ -230,14 +324,30 @@
 
   <!-- TRAVEL AND VEHICLES SUB-CATEGORY MENU -->
   <div id="screen-travel-vehicles" class="hidden">
+    <button type="button" class="nav-btn home-btn" id="travel-vehicles-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="travel-vehicles-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-travel-vehicles" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-travel-vehicles" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
+      </svg>
+    </button>
     <div class="toolbar-right">
-      <button type="button" class="scheme-btn inline" id="scheme-btn-travel-vehicles" title="Cycle colour scheme" aria-label="Cycle colour scheme">
-        <svg viewBox="0 0 24 24" width="18" height="18">
-          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
-        </svg>
-      </button>
       <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
       <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
     </div>
@@ -263,14 +373,30 @@
 
   <!-- ANIMALS SUB-CATEGORY MENU -->
   <div id="screen-animals" class="hidden">
+    <button type="button" class="nav-btn home-btn" id="animals-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="animals-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-animals" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-animals" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
+      </svg>
+    </button>
     <div class="toolbar-right">
-      <button type="button" class="scheme-btn inline" id="scheme-btn-animals" title="Cycle colour scheme" aria-label="Cycle colour scheme">
-        <svg viewBox="0 0 24 24" width="18" height="18">
-          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
-        </svg>
-      </button>
       <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
       <button type="button" class="toolbar-btn dir-btn" title="Toggle question/answer language direction">EN → IT</button>
     </div>
@@ -312,14 +438,30 @@
 
   <!-- A TO Z MODE MENU -->
   <div id="screen-a-to-z" class="hidden">
+    <button type="button" class="nav-btn home-btn" id="a-to-z-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="a-to-z-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-a-to-z" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-a-to-z" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
+      </svg>
+    </button>
     <div class="toolbar-right">
-      <button type="button" class="scheme-btn inline" id="scheme-btn-a-to-z" title="Cycle colour scheme" aria-label="Cycle colour scheme">
-        <svg viewBox="0 0 24 24" width="18" height="18">
-          <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
-          <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
-        </svg>
-      </button>
       <button type="button" class="toolbar-btn count-btn" title="Toggle number of multiple-choice options">4</button>
     </div>
     <p class="kicker">A TO Z</p>
@@ -340,6 +482,17 @@
 
   <!-- GAME SCREEN -->
   <div id="screen-game" class="hidden">
+    <button type="button" class="nav-btn home-btn" id="game-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="game-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
     <button type="button" class="scheme-btn corner-left" id="scheme-btn-game" title="Cycle colour scheme" aria-label="Cycle colour scheme">
       <svg viewBox="0 0 24 24" width="18" height="18">
         <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
@@ -347,15 +500,9 @@
         <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
       </svg>
     </button>
-    <button type="button" class="nav-btn" id="game-home-btn" title="Home" aria-label="Go to home screen">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 11.5L12 4l9 7.5"></path>
-        <path d="M5.5 10v9.5h13V10"></path>
-      </svg>
-    </button>
-    <button type="button" class="nav-btn" id="game-back-btn" title="Back" aria-label="Go back to the previous screen">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 5l-7 7 7 7"></path>
+    <button type="button" class="font-btn corner-left" id="font-btn-game" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
       </svg>
     </button>
     <div class="toolbar-right">
@@ -377,11 +524,33 @@
 
   <!-- END SCREEN -->
   <div id="screen-end" class="hidden">
+    <button type="button" class="nav-btn home-btn" id="end-home-btn" title="Home" aria-label="Go to home screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5L12 4l9 7.5"></path>
+        <path d="M5.5 10v9.5h13V10"></path>
+      </svg>
+    </button>
+    <button type="button" class="nav-btn back-btn" id="end-back-btn" title="Back" aria-label="Go back to the previous screen">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 5l-7 7 7 7"></path>
+      </svg>
+    </button>
+    <button type="button" class="scheme-btn corner-left" id="scheme-btn-end" title="Cycle colour scheme" aria-label="Cycle colour scheme">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <circle class="swatch swatch-a" cx="8" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-b" cx="16" cy="9" r="4.2"></circle>
+        <circle class="swatch swatch-c" cx="12" cy="16" r="4.2"></circle>
+      </svg>
+    </button>
+    <button type="button" class="font-btn corner-left" id="font-btn-end" title="Change font" aria-label="Change font">
+      <svg viewBox="0 0 24 24" width="18" height="18">
+        <text x="12" y="16" class="font-btn-glyph" font-size="12" font-weight="700" text-anchor="middle" fill="var(--ink)">Aa</text>
+      </svg>
+    </button>
     <div class="end-top-actions">
       <button type="button" class="btn small" id="btn-retry-mistakes">Retry mistakes</button>
       <button type="button" class="btn small" id="btn-restart">Play again</button>
     </div>
-    <p class="kicker">RESULTS</p>
     <div class="grade-block">
       <div class="grade-letter" id="grade-letter">A</div>
       <div class="grade-comment" id="grade-comment"></div>
@@ -410,7 +579,7 @@
   rather than double-clicked — modules refuse to load over a plain
   file:// path.
 -->
-<script type="module" src="script.js?v=17"></script>
+<script type="module" src="script.js?v=20"></script>
 
 </body>
 </html>
