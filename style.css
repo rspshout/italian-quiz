@@ -175,6 +175,21 @@
     margin-bottom: 0;
   }
 
+  /* --- Start screen: Start / About side-by-side row --- */
+  /* flex-grow ratios (65/35) rather than fixed flex-basis percentages,
+     so the row's own `gap` doesn't push the total width past 100% —
+     the two buttons share whatever space is left after the gap. */
+  .start-actions {
+    display: flex;
+    gap: 10px;
+  }
+  .start-actions .btn {
+    width: auto;
+    margin-bottom: 0;
+  }
+  .start-actions .btn-start { flex: 65 1 0; }
+  .start-actions .btn-about { flex: 35 1 0; }
+
   .rule { border: none; border-top: 1px solid var(--ink); margin: 24px 0; }
 
   /* --- Menu list --- */
@@ -228,7 +243,7 @@
      used, pushing the kicker/heading text down clear of the buttons. */
   #screen-start, #screen-type, #screen-menu, #screen-vocab,
   #screen-household, #screen-food-drink, #screen-travel-vehicles,
-  #screen-animals, #screen-a-to-z, #screen-game { padding-top: 22px; }
+  #screen-animals, #screen-a-to-z, #screen-game, #screen-about { padding-top: 22px; }
   .status-row {
     display: flex;
     justify-content: space-between;
@@ -398,6 +413,16 @@
   .review-row:last-child { border-bottom: none; }
   .review-row .it { font-weight: 700; }
   .review-row .en { color: var(--muted); }
+
+  /* --- About screen --- */
+  #screen-about a {
+    color: var(--accent);
+  }
+  .about-motto {
+    text-align: center;
+    color: var(--muted);
+    margin-top: 24px;
+  }
 
   .hidden { display: none !important; }
 
