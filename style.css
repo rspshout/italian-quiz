@@ -243,7 +243,8 @@
      used, pushing the kicker/heading text down clear of the buttons. */
   #screen-start, #screen-type, #screen-menu, #screen-vocab,
   #screen-household, #screen-food-drink, #screen-travel-vehicles,
-  #screen-animals, #screen-a-to-z, #screen-game, #screen-about { padding-top: 22px; }
+  #screen-animals, #screen-clothes, #screen-expressions-phrases,
+  #screen-nature-geography, #screen-a-to-z, #screen-game, #screen-about { padding-top: 22px; }
   .status-row {
     display: flex;
     justify-content: space-between;
