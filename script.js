@@ -576,6 +576,18 @@ import { NATURE_GEOGRAPHY_LISTS } from './vocab-nature-geography.js?v=1';
     correctCount = 0;
     wrongCount = 0;
     wrongAnswers = [];
+    // Every new game — however it was started (menu selection, "Play
+    // again", "Retry mistakes", a fresh Random/Casuale draw, etc.) —
+    // must start with the "Review incorrect answers" panel closed and
+    // emptied of the PREVIOUS game's rows. This used to live only in
+    // the btn-restart ("Play again") click handler, so any other route
+    // into a new game (most commonly "Retry mistakes") left the panel
+    // exactly as the last game left it: still open, still showing that
+    // game's mistakes, right up to the new game's own end screen.
+    // Centralising the reset here — the one function every game start
+    // funnels through — guarantees it happens every time.
+    document.getElementById('review-list').classList.add('hidden');
+    document.getElementById('review-list').innerHTML = '';
     // A to Z's direction is always forced (Italian question, English
     // answers — see questionLangIdx()/optionLangIdx()), so the EN<->IT
     // toggle doesn't apply and is hidden for BOTH A-to-Z modes. The
