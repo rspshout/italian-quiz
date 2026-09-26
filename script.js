@@ -759,7 +759,12 @@ import { NATURE_GEOGRAPHY_LISTS } from './vocab-nature-geography.js?v=1';
       ],
     },
     d: {
-      letter: 'D',
+      // No letter shown for this tier any more — endGame() displays the
+      // raw percentage instead (see showPercent below). Kept as null
+      // rather than deleted so it's obvious this is deliberate, not an
+      // oversight, if this tier is touched again later.
+      letter: null,
+      showPercent: true,
       comments: [
         'You are making progress, prova ancora!',
         'Keep practicing and you will see miglioramento!',
@@ -769,7 +774,9 @@ import { NATURE_GEOGRAPHY_LISTS } from './vocab-nature-geography.js?v=1';
       ],
     },
     e: {
-      letter: 'E',
+      // Same as tier "d" above: percentage shown instead of a letter.
+      letter: null,
+      showPercent: true,
       comments: [
         'Keep your chin up, stai improving!',
         'More practice will help you improve steadily!',
@@ -782,6 +789,9 @@ import { NATURE_GEOGRAPHY_LISTS } from './vocab-nature-geography.js?v=1';
 
   // Bands: 100% exact -> perfect; 90-99 -> A*; 80-89 -> A; 70-79 -> B;
   // 55-69 -> C; 35-54 -> D; 0-34 -> E. No "F" tier any more.
+  // D and E no longer show as letter grades (see GRADE_TIERS.d/.e above) —
+  // falling below a C shows the raw percentage instead, since a D/E felt
+  // demotivating. The comment pools and band thresholds are unchanged.
   function getGradeInfo(pct) {
     if (pct >= 100) return GRADE_TIERS.perfect;
     if (pct >= 90) return GRADE_TIERS.aStar;
@@ -796,7 +806,8 @@ import { NATURE_GEOGRAPHY_LISTS } from './vocab-nature-geography.js?v=1';
     const pct = Math.round((correctCount / totalQuestions) * 1000) / 10;
     const gradeInfo = getGradeInfo(pct);
     const comment = gradeInfo.comments[Math.floor(Math.random() * gradeInfo.comments.length)];
-    document.getElementById('grade-letter').textContent = gradeInfo.letter;
+    document.getElementById('grade-letter').textContent =
+      gradeInfo.showPercent ? pct + '%' : gradeInfo.letter;
     document.getElementById('grade-comment').textContent = comment;
     document.getElementById('score-line').textContent =
       correctCount + ' / ' + totalQuestions + ' correct — ' + pct + '%';
