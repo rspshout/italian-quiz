@@ -25,6 +25,10 @@ import { FOOD_DRINK_LISTS } from './vocab-food-drink.js?v=1';
 import { TRAVEL_VEHICLES_LISTS } from './vocab-travel-vehicles.js?v=1';
 import { ANIMALS_LISTS } from './vocab-animals.js?v=1';
 import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
+import { CLOTHES_LISTS } from './vocab-clothes.js?v=1';
+import { EXPRESSIONS_PHRASES_LISTS } from './vocab-expressions-phrases.js?v=1';
+import { FAMILY_LISTS } from './vocab-family.js?v=1';
+import { NATURE_GEOGRAPHY_LISTS } from './vocab-nature-geography.js?v=1';
 
   // ---------- colour schemes ----------
       const SCHEMES = [
@@ -161,13 +165,16 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   const screenFoodDrink = document.getElementById('screen-food-drink');
   const screenTravelVehicles = document.getElementById('screen-travel-vehicles');
   const screenAnimals   = document.getElementById('screen-animals');
+  const screenClothes   = document.getElementById('screen-clothes');
+  const screenExpressionsPhrases = document.getElementById('screen-expressions-phrases');
+  const screenNatureGeography = document.getElementById('screen-nature-geography');
   const screenAtoZ      = document.getElementById('screen-a-to-z');
   const screenGame      = document.getElementById('screen-game');
   const screenEnd       = document.getElementById('screen-end');
   const screenAbout     = document.getElementById('screen-about');
 
   function showScreen(el) {
-    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenFoodDrink, screenTravelVehicles, screenAnimals, screenAtoZ, screenGame, screenEnd, screenAbout].forEach(s => s.classList.add('hidden'));
+    [screenStart, screenType, screenMenu, screenVocab, screenHousehold, screenFoodDrink, screenTravelVehicles, screenAnimals, screenClothes, screenExpressionsPhrases, screenNatureGeography, screenAtoZ, screenGame, screenEnd, screenAbout].forEach(s => s.classList.add('hidden'));
     el.classList.remove('hidden');
   }
 
@@ -250,6 +257,55 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   // played.
   document.getElementById('menu-item-an-random').addEventListener('click', () => startRandomAnimals());
 
+  // "Clothes (Vestiti)" is a category, not a quiz — it navigates one level
+  // deeper to screen-clothes rather than calling startGame. It only has one
+  // real sub-list (the source spreadsheet has just one tab), so
+  // screen-clothes shows that single tile plus Random (Casuale).
+  document.getElementById('menu-item-clothes-category').addEventListener('click', () => showScreen(screenClothes));
+  document.getElementById('btn-back-vocab-from-clothes').addEventListener('click', () => showScreen(screenVocab));
+
+  document.getElementById('menu-item-cl-clothes').addEventListener('click', () => startGame('clothes', screenClothes, CLOTHES_LISTS));
+
+  // "Random (Casuale)" isn't a fixed list — build a fresh 30-word draw from
+  // the Clothes pool, re-shuffled each time it's played.
+  document.getElementById('menu-item-cl-random').addEventListener('click', () => startRandomClothes());
+
+  // "Expressions and phrases (Espressioni e frasi)" is a category, not a
+  // quiz — it navigates one level deeper to screen-expressions-phrases
+  // rather than calling startGame.
+  document.getElementById('menu-item-expressions-phrases-category').addEventListener('click', () => showScreen(screenExpressionsPhrases));
+  document.getElementById('btn-back-vocab-from-expressions-phrases').addEventListener('click', () => showScreen(screenVocab));
+
+  document.getElementById('menu-item-ep-expressions').addEventListener('click', () => startGame('expressions', screenExpressionsPhrases, EXPRESSIONS_PHRASES_LISTS));
+  document.getElementById('menu-item-ep-helpful-phrases').addEventListener('click', () => startGame('helpfulPhrases', screenExpressionsPhrases, EXPRESSIONS_PHRASES_LISTS));
+
+  // "Random (Casuale)" isn't a fixed list — build a fresh 30-word draw from
+  // Expressions and Helpful phrases pooled together, re-shuffled each time
+  // it's played.
+  document.getElementById('menu-item-ep-random').addEventListener('click', () => startRandomExpressionsPhrases());
+
+  // "Family (Famiglia)" has under 30 entries and only one tab in the source
+  // spreadsheet, so — unlike every other vocabulary category — it has no
+  // sub-category screen and no Random (Casuale) tile. It starts the quiz
+  // directly from screen-vocab, the same way a single verb list starts
+  // straight from the verbs menu.
+  document.getElementById('menu-item-family').addEventListener('click', () => startGame('family', screenVocab, FAMILY_LISTS));
+
+  // "Nature & Geography (Natura e geografia)" is a category, not a quiz —
+  // it navigates one level deeper to screen-nature-geography rather than
+  // calling startGame.
+  document.getElementById('menu-item-nature-geography-category').addEventListener('click', () => showScreen(screenNatureGeography));
+  document.getElementById('btn-back-vocab-from-nature-geography').addEventListener('click', () => showScreen(screenVocab));
+
+  document.getElementById('menu-item-ng-nature-botany').addEventListener('click', () => startGame('natureBotany', screenNatureGeography, NATURE_GEOGRAPHY_LISTS));
+  document.getElementById('menu-item-ng-geography').addEventListener('click', () => startGame('geography', screenNatureGeography, NATURE_GEOGRAPHY_LISTS));
+  document.getElementById('menu-item-ng-countries').addEventListener('click', () => startGame('countries', screenNatureGeography, NATURE_GEOGRAPHY_LISTS));
+
+  // "Random (Casuale)" isn't a fixed list — build a fresh 30-word draw from
+  // Nature and Botany, Geography, and Countries pooled together, re-shuffled
+  // each time it's played.
+  document.getElementById('menu-item-ng-random').addEventListener('click', () => startRandomNatureGeography());
+
   // "A to Z" sits directly under screen-type (like Verbs/Vocabulary), and
   // itself has two modes rather than sub-category tiles: the full
   // alphabetical list, and a random 30-word draw that's still presented
@@ -279,6 +335,9 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
   document.getElementById('food-drink-back-btn').addEventListener('click', () => showScreen(screenVocab));
   document.getElementById('travel-vehicles-back-btn').addEventListener('click', () => showScreen(screenVocab));
   document.getElementById('animals-back-btn').addEventListener('click', () => showScreen(screenVocab));
+  document.getElementById('clothes-back-btn').addEventListener('click', () => showScreen(screenVocab));
+  document.getElementById('expressions-phrases-back-btn').addEventListener('click', () => showScreen(screenVocab));
+  document.getElementById('nature-geography-back-btn').addEventListener('click', () => showScreen(screenVocab));
   document.getElementById('a-to-z-back-btn').addEventListener('click', () => showScreen(screenType));
   document.getElementById('game-back-btn').addEventListener('click', () => showScreen(gameSourceScreen || screenType));
   document.getElementById('end-back-btn').addEventListener('click', () => showScreen(gameSourceScreen || screenType));
@@ -430,6 +489,42 @@ import { VOCAB_A_TO_Z } from './vocab-a-to-z.js?v=1';
     const label = 'Random (Casuale)';
     const footer = label + ' · ' + randomPairs.length + ' pairs';
     startGameWithPairs(randomPairs, label, footer, screenAnimals, allAnimalsPairs, false, false);
+  }
+
+  // Same idea as the other category Random modes. Clothes only has one
+  // sub-list (CLOTHES_LISTS has a single entry), so this simply draws 30
+  // from it — kept as its own function, rather than special-cased, so it
+  // matches the same startRandomX() shape as every other category.
+  function startRandomClothes() {
+    const allClothesPairs = Object.values(CLOTHES_LISTS).flatMap(list => list.pairs);
+    const randomPairs = shuffle(allClothesPairs).slice(0, 30);
+    const label = 'Random (Casuale)';
+    const footer = label + ' · ' + randomPairs.length + ' pairs';
+    startGameWithPairs(randomPairs, label, footer, screenClothes, allClothesPairs, false, false);
+  }
+
+  // Same idea as the other category Random modes, but pools Expressions and
+  // Helpful phrases together. masterPool is the FULL Expressions and
+  // phrases pool, so distractors can come from any word in either
+  // sub-category, not just this round's 30.
+  function startRandomExpressionsPhrases() {
+    const allExpressionsPhrasesPairs = Object.values(EXPRESSIONS_PHRASES_LISTS).flatMap(list => list.pairs);
+    const randomPairs = shuffle(allExpressionsPhrasesPairs).slice(0, 30);
+    const label = 'Random (Casuale)';
+    const footer = label + ' · ' + randomPairs.length + ' pairs';
+    startGameWithPairs(randomPairs, label, footer, screenExpressionsPhrases, allExpressionsPhrasesPairs, false, false);
+  }
+
+  // Same idea as the other category Random modes, but pools Nature and
+  // Botany, Geography, and Countries together. masterPool is the FULL
+  // Nature & Geography pool, so distractors can come from any word in any
+  // of the three sub-categories, not just this round's 30.
+  function startRandomNatureGeography() {
+    const allNatureGeographyPairs = Object.values(NATURE_GEOGRAPHY_LISTS).flatMap(list => list.pairs);
+    const randomPairs = shuffle(allNatureGeographyPairs).slice(0, 30);
+    const label = 'Random (Casuale)';
+    const footer = label + ' · ' + randomPairs.length + ' pairs';
+    startGameWithPairs(randomPairs, label, footer, screenNatureGeography, allNatureGeographyPairs, false, false);
   }
 
   // "A to Z" full mode: plays VOCAB_A_TO_Z (or just the slice starting with
