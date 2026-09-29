@@ -32,18 +32,13 @@ import { NATURE_GEOGRAPHY_LISTS } from './vocab-nature-geography.js?v=1';
 
   // ---------- colour schemes ----------
       const SCHEMES = [
-    { name: 'Midnight Ink',         ink: '#e8e6e1', paper: '#1b1b1d', muted: '#7a7a7f', accent: '#6e9fff' },
-    { name: 'Greyscale',            ink: '#f5f5f5', paper: '#101010', muted: '#8a8a8a', accent: '#cfcfcf' },
-    { name: 'Adriatic Dusk',        ink: '#F0F4F8', paper: '#1E2229', muted: '#8B9BB4', accent: '#E07A5F' },
-    { name: 'Espresso Dark',        ink: '#f0e6da', paper: '#241812', muted: '#8a7566', accent: '#d98c3f' },
-    { name: 'Deep Forest',          ink: '#e7f0e9', paper: '#10201a', muted: '#6f8a7a', accent: '#57c785' },
-    { name: 'Nightshade Plum',      ink: '#ecdff5', paper: '#1e1526', muted: '#8b7a97', accent: '#b98ce0' },
-    { name: 'Italia',               ink: '#046a38', paper: '#fdfdfb', muted: '#7a7a7a', accent: '#cd212a' },
-    { name: 'Amalfi Coast',         ink: '#1f4e5f', paper: '#fdf6ec', muted: '#9db6bd', accent: '#e0a458' },
-    { name: 'Dusty Blue & Blush',   ink: '#4a5b73', paper: '#f5f1ee', muted: '#9aa5ad', accent: '#d98e8e' },
-    { name: 'Venetian Terracotta',  ink: '#33221C', paper: '#FAF6F0', muted: '#8C736A', accent: '#BC4749' },
-    { name: 'Florentine Paper',     ink: '#262322', paper: '#FBF8F2', muted: '#807570', accent: '#78290F' },
-    { name: 'Roman Marble',         ink: '#111111', paper: '#FCFCFC', muted: '#666666', accent: '#9A7B38' },
+    { name: '01 - Adriatic Dusk',       ink: '#F0F4F8', paper: '#1E2229', muted: '#8B9BB4', accent: '#E07A5F' },
+    { name: '02 - Light Grey',          ink: '#33373d', paper: '#e6e7e9', muted: '#62676f', accent: '#4f6f8f' },
+    { name: '03 - Dusty Blue & Blush',  ink: '#4a5b73', paper: '#f5f1ee', muted: '#9aa5ad', accent: '#d98e8e' },
+    { name: '04 - Italia',              ink: '#046a38', paper: '#fdfdfb', muted: '#7a7a7a', accent: '#cd212a' },
+    { name: '05 - Deep Forest',         ink: '#e7f0e9', paper: '#10201a', muted: '#6f8a7a', accent: '#57c785' },
+    { name: '06 - Midnight Ink',        ink: '#e8e6e1', paper: '#1b1b1d', muted: '#7a7a7f', accent: '#6e9fff' },
+    { name: '07 - Yellow on Charcoal',  ink: '#f0d264', paper: '#24272c', muted: '#a09668', accent: '#e8a15c' },
   ];
   let schemeIndex = 0;
 
@@ -55,6 +50,11 @@ import { NATURE_GEOGRAPHY_LISTS } from './vocab-nature-geography.js?v=1';
     root.setProperty('--muted', s.muted);
     root.setProperty('--accent', s.accent);
     root.setProperty('--line', s.ink);
+    // TEMPORARY: shows the active scheme's name bottom-left on every
+    // screen while we choose which schemes to keep. Remove with the
+    // #scheme-label element (index.html) and .scheme-label (style.css).
+    const label = document.getElementById('scheme-label');
+    if (label) label.textContent = s.name;
     document.querySelectorAll('.swatch-a').forEach(el => el.style.fill = s.ink);
     document.querySelectorAll('.swatch-b').forEach(el => el.style.fill = s.accent);
     document.querySelectorAll('.swatch-c').forEach(el => el.style.fill = s.muted);
@@ -807,10 +807,10 @@ import { NATURE_GEOGRAPHY_LISTS } from './vocab-nature-geography.js?v=1';
     const gradeInfo = getGradeInfo(pct);
     const comment = gradeInfo.comments[Math.floor(Math.random() * gradeInfo.comments.length)];
     document.getElementById('grade-letter').textContent =
-      gradeInfo.showPercent ? pct + '%' : gradeInfo.letter;
+      gradeInfo.showPercent ? Math.round(pct) + '%' : gradeInfo.letter;
     document.getElementById('grade-comment').textContent = comment;
     document.getElementById('score-line').textContent =
-      correctCount + ' / ' + totalQuestions + ' correct — ' + pct + '%';
+      correctCount + ' / ' + totalQuestions + ' correct — ' + Math.round(pct) + '%';
     document.getElementById('end-correct').textContent = correctCount;
     document.getElementById('end-wrong').textContent = wrongCount;
     document.getElementById('btn-retry-mistakes').classList.toggle('hidden', wrongAnswers.length === 0);
